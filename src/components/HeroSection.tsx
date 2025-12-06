@@ -46,6 +46,77 @@ const HeroSection = () => {
             Transform your restaurant operations with our cloud-based ordering platform.
           </p>
 
+          {/* Device Mockups */}
+          <div className="flex items-end justify-center gap-4 lg:gap-6 mb-10 animate-fade-up" style={{ animationDelay: "0.25s" }}>
+            {/* Tablet Mockup */}
+            <div className="relative w-64 sm:w-80 lg:w-96 h-48 sm:h-56 lg:h-64 bg-foreground rounded-2xl p-2 shadow-2xl">
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-muted-foreground/30 rounded-full" />
+              <div className="w-full h-full bg-background rounded-xl overflow-hidden">
+                {/* Mock UI */}
+                <div className="h-full flex">
+                  {/* Menu Side */}
+                  <div className="flex-1 p-2 sm:p-3 border-r border-border">
+                    <div className="text-[10px] sm:text-xs font-bold text-foreground mb-2">Menu</div>
+                    <div className="space-y-2">
+                      {[1, 2, 3].map((i) => (
+                        <div key={i} className="flex items-center gap-2 p-1.5 rounded-lg bg-muted/50">
+                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-hero flex-shrink-0" />
+                          <div className="flex-1 min-w-0">
+                            <div className="h-2 w-16 bg-muted-foreground/20 rounded mb-1" />
+                            <div className="h-1.5 w-10 bg-primary/40 rounded" />
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                  {/* Cart Side */}
+                  <div className="w-24 sm:w-28 lg:w-32 p-2 sm:p-3 bg-muted/30">
+                    <div className="text-[10px] sm:text-xs font-bold text-foreground mb-2">Cart</div>
+                    <div className="space-y-1.5 mb-3">
+                      {[1, 2].map((i) => (
+                        <div key={i} className="flex justify-between text-[8px] sm:text-[10px]">
+                          <span className="text-muted-foreground">Item {i}</span>
+                          <span className="text-foreground font-medium">$12</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="border-t border-border pt-2">
+                      <div className="flex justify-between text-[10px] sm:text-xs font-bold">
+                        <span className="text-foreground">Total</span>
+                        <span className="text-primary">$24</span>
+                      </div>
+                    </div>
+                    <div className="mt-2 h-5 sm:h-6 bg-primary rounded-md flex items-center justify-center">
+                      <span className="text-[8px] sm:text-[10px] text-primary-foreground font-medium">Order Now</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Phone Mockup */}
+            <div className="relative w-20 sm:w-24 lg:w-28 h-40 sm:h-48 lg:h-56 bg-foreground rounded-2xl p-1.5 shadow-2xl hidden sm:block">
+              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-muted-foreground/30 rounded-full" />
+              <div className="w-full h-full bg-background rounded-xl overflow-hidden">
+                {/* Mock UI */}
+                <div className="p-2">
+                  <div className="text-[8px] font-bold text-foreground mb-2">Orders</div>
+                  <div className="space-y-1.5">
+                    {[1, 2, 3, 4].map((i) => (
+                      <div key={i} className="p-1.5 rounded-md bg-muted/50">
+                        <div className="flex items-center justify-between mb-1">
+                          <div className="h-1.5 w-8 bg-muted-foreground/30 rounded" />
+                          <div className={`w-2 h-2 rounded-full ${i === 1 ? 'bg-mint' : i === 2 ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
+                        </div>
+                        <div className="h-1 w-12 bg-muted-foreground/20 rounded" />
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="xl" className="w-full sm:w-auto group">
