@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Zap, Shield } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich } from "lucide-react";
 
 const HeroSection = () => {
   return (
@@ -36,8 +36,8 @@ const HeroSection = () => {
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            Smart Food
-            <span className="block text-gradient">Ordering System</span>
+            The Future of
+            <span className="block text-gradient">Restaurant Ordering</span>
           </h1>
 
           {/* Subheading */}
@@ -47,47 +47,53 @@ const HeroSection = () => {
           </p>
 
           {/* Device Mockups */}
-          <div className="flex items-end justify-center gap-4 lg:gap-6 mb-10 animate-fade-up" style={{ animationDelay: "0.25s" }}>
+          <div className="flex items-end justify-center gap-4 lg:gap-8 mb-10 animate-fade-up" style={{ animationDelay: "0.25s" }}>
             {/* Tablet Mockup */}
-            <div className="relative w-64 sm:w-80 lg:w-96 h-48 sm:h-56 lg:h-64 bg-foreground rounded-2xl p-2 shadow-2xl">
-              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-16 h-1.5 bg-muted-foreground/30 rounded-full" />
-              <div className="w-full h-full bg-background rounded-xl overflow-hidden">
-                {/* Mock UI */}
+            <div className="relative w-72 sm:w-96 lg:w-[28rem] h-56 sm:h-72 lg:h-80 bg-foreground rounded-3xl p-3 shadow-2xl">
+              <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-2 bg-muted-foreground/30 rounded-full" />
+              <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
+                {/* Mock UI with Food Icons */}
                 <div className="h-full flex">
                   {/* Menu Side */}
-                  <div className="flex-1 p-2 sm:p-3 border-r border-border">
-                    <div className="text-[10px] sm:text-xs font-bold text-foreground mb-2">Menu</div>
-                    <div className="space-y-2">
-                      {[1, 2, 3].map((i) => (
-                        <div key={i} className="flex items-center gap-2 p-1.5 rounded-lg bg-muted/50">
-                          <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-lg bg-gradient-hero flex-shrink-0" />
+                  <div className="flex-1 p-3 sm:p-4 border-r border-border">
+                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Menu</div>
+                    <div className="space-y-3">
+                      {[
+                        { icon: Pizza, name: "Pizza", price: "$18", color: "bg-coral/20 text-coral" },
+                        { icon: Salad, name: "Salad", price: "$12", color: "bg-mint/20 text-mint" },
+                        { icon: Sandwich, name: "Sandwich", price: "$15", color: "bg-primary/20 text-primary" },
+                      ].map((item, i) => (
+                        <div key={i} className="flex items-center gap-3 p-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors">
+                          <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${item.color} flex items-center justify-center flex-shrink-0`}>
+                            <item.icon className="w-5 h-5 sm:w-6 sm:h-6" />
+                          </div>
                           <div className="flex-1 min-w-0">
-                            <div className="h-2 w-16 bg-muted-foreground/20 rounded mb-1" />
-                            <div className="h-1.5 w-10 bg-primary/40 rounded" />
+                            <div className="text-xs sm:text-sm font-medium text-foreground">{item.name}</div>
+                            <div className="text-xs text-primary font-semibold">{item.price}</div>
                           </div>
                         </div>
                       ))}
                     </div>
                   </div>
                   {/* Cart Side */}
-                  <div className="w-24 sm:w-28 lg:w-32 p-2 sm:p-3 bg-muted/30">
-                    <div className="text-[10px] sm:text-xs font-bold text-foreground mb-2">Cart</div>
-                    <div className="space-y-1.5 mb-3">
-                      {[1, 2].map((i) => (
-                        <div key={i} className="flex justify-between text-[8px] sm:text-[10px]">
-                          <span className="text-muted-foreground">Item {i}</span>
-                          <span className="text-foreground font-medium">$12</span>
+                  <div className="w-28 sm:w-32 lg:w-40 p-3 sm:p-4 bg-muted/30">
+                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Cart</div>
+                    <div className="space-y-2 mb-4">
+                      {["Pizza", "Salad"].map((item, i) => (
+                        <div key={i} className="flex justify-between text-[10px] sm:text-xs">
+                          <span className="text-muted-foreground">{item}</span>
+                          <span className="text-foreground font-medium">${i === 0 ? 18 : 12}</span>
                         </div>
                       ))}
                     </div>
-                    <div className="border-t border-border pt-2">
-                      <div className="flex justify-between text-[10px] sm:text-xs font-bold">
+                    <div className="border-t border-border pt-3">
+                      <div className="flex justify-between text-xs sm:text-sm font-bold">
                         <span className="text-foreground">Total</span>
-                        <span className="text-primary">$24</span>
+                        <span className="text-primary">$30</span>
                       </div>
                     </div>
-                    <div className="mt-2 h-5 sm:h-6 bg-primary rounded-md flex items-center justify-center">
-                      <span className="text-[8px] sm:text-[10px] text-primary-foreground font-medium">Order Now</span>
+                    <div className="mt-3 h-7 sm:h-8 bg-primary rounded-lg flex items-center justify-center">
+                      <span className="text-[10px] sm:text-xs text-primary-foreground font-medium">Order Now</span>
                     </div>
                   </div>
                 </div>
@@ -95,20 +101,28 @@ const HeroSection = () => {
             </div>
 
             {/* Phone Mockup */}
-            <div className="relative w-20 sm:w-24 lg:w-28 h-40 sm:h-48 lg:h-56 bg-foreground rounded-2xl p-1.5 shadow-2xl hidden sm:block">
-              <div className="absolute top-2 left-1/2 -translate-x-1/2 w-8 h-1 bg-muted-foreground/30 rounded-full" />
-              <div className="w-full h-full bg-background rounded-xl overflow-hidden">
+            <div className="relative w-28 sm:w-32 lg:w-36 h-56 sm:h-64 lg:h-72 bg-foreground rounded-3xl p-2 shadow-2xl hidden sm:block">
+              <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-muted-foreground/30 rounded-full" />
+              <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
                 {/* Mock UI */}
-                <div className="p-2">
-                  <div className="text-[8px] font-bold text-foreground mb-2">Orders</div>
-                  <div className="space-y-1.5">
-                    {[1, 2, 3, 4].map((i) => (
-                      <div key={i} className="p-1.5 rounded-md bg-muted/50">
-                        <div className="flex items-center justify-between mb-1">
-                          <div className="h-1.5 w-8 bg-muted-foreground/30 rounded" />
-                          <div className={`w-2 h-2 rounded-full ${i === 1 ? 'bg-mint' : i === 2 ? 'bg-primary' : 'bg-muted-foreground/30'}`} />
+                <div className="p-3">
+                  <div className="text-[10px] font-bold text-foreground mb-3">Orders</div>
+                  <div className="space-y-2">
+                    {[
+                      { status: "Ready", color: "bg-mint" },
+                      { status: "Cooking", color: "bg-primary" },
+                      { status: "New", color: "bg-coral" },
+                      { status: "Pending", color: "bg-muted-foreground/30" },
+                    ].map((order, i) => (
+                      <div key={i} className="p-2 rounded-lg bg-muted/50">
+                        <div className="flex items-center justify-between mb-1.5">
+                          <div className="text-[9px] font-medium text-foreground">Order #{i + 101}</div>
+                          <div className={`w-2.5 h-2.5 rounded-full ${order.color}`} />
                         </div>
-                        <div className="h-1 w-12 bg-muted-foreground/20 rounded" />
+                        <div className="flex items-center gap-1.5">
+                          <Coffee className="w-3 h-3 text-muted-foreground" />
+                          <span className="text-[8px] text-muted-foreground">{order.status}</span>
+                        </div>
                       </div>
                     ))}
                   </div>

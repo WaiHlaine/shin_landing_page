@@ -22,7 +22,7 @@ const Navbar = () => {
               <Utensils className="w-5 h-5 text-primary-foreground" />
             </div>
             <span className="text-xl font-bold text-foreground">
-              Smart<span className="text-primary">Order</span>
+              Apollo
             </span>
           </a>
 
