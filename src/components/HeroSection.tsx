@@ -1,7 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const HeroSection = () => {
+  const { t } = useLanguage();
+
+  const stats = [
+    { value: "1,000+", label: t.hero.stats.restaurants },
+    { value: "99.9%", label: t.hero.stats.uptime },
+    { value: "50K+", label: t.hero.stats.orders },
+    { value: "4.9/5", label: t.hero.stats.rating },
+  ];
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 lg:pt-0">
       {/* Background Elements */}
@@ -31,19 +41,18 @@ const HeroSection = () => {
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary font-medium text-sm mb-8 animate-fade-up">
             <Sparkles className="w-4 h-4" />
-            <span>Trusted by 1,000+ Restaurants Nationwide</span>
+            <span>{t.hero.badge}</span>
           </div>
 
           {/* Heading */}
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-foreground leading-tight mb-6 animate-fade-up" style={{ animationDelay: "0.1s" }}>
-            The Future of
-            <span className="block text-gradient">Restaurant Ordering</span>
+            {t.hero.heading}
+            <span className="block text-gradient">{t.hero.headingHighlight}</span>
           </h1>
 
           {/* Subheading */}
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed animate-fade-up" style={{ animationDelay: "0.2s" }}>
-            Used by restaurants across the country. Simple, fast, and affordable. 
-            Transform your restaurant operations with our cloud-based ordering platform.
+            {t.hero.subheading}
           </p>
 
           {/* Device Mockups */}
@@ -56,7 +65,7 @@ const HeroSection = () => {
                 <div className="h-full flex">
                   {/* Menu Side */}
                   <div className="flex-1 p-3 sm:p-4 border-r border-border">
-                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Menu</div>
+                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">{t.hero.mockup.menu}</div>
                     <div className="space-y-3">
                       {[
                         { icon: Pizza, name: "Pizza", price: "$18", color: "bg-coral/20 text-coral" },
@@ -77,7 +86,7 @@ const HeroSection = () => {
                   </div>
                   {/* Cart Side */}
                   <div className="w-28 sm:w-32 lg:w-40 p-3 sm:p-4 bg-muted/30">
-                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Cart</div>
+                    <div className="text-xs sm:text-sm font-bold text-foreground mb-3">{t.hero.mockup.cart}</div>
                     <div className="space-y-2 mb-4">
                       {["Pizza", "Salad"].map((item, i) => (
                         <div key={i} className="flex justify-between text-[10px] sm:text-xs">
@@ -88,12 +97,12 @@ const HeroSection = () => {
                     </div>
                     <div className="border-t border-border pt-3">
                       <div className="flex justify-between text-xs sm:text-sm font-bold">
-                        <span className="text-foreground">Total</span>
+                        <span className="text-foreground">{t.hero.mockup.total}</span>
                         <span className="text-primary">$30</span>
                       </div>
                     </div>
                     <div className="mt-3 h-7 sm:h-8 bg-primary rounded-lg flex items-center justify-center">
-                      <span className="text-[10px] sm:text-xs text-primary-foreground font-medium">Order Now</span>
+                      <span className="text-[10px] sm:text-xs text-primary-foreground font-medium">{t.hero.mockup.orderNow}</span>
                     </div>
                   </div>
                 </div>
@@ -106,13 +115,13 @@ const HeroSection = () => {
               <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
                 {/* Mock UI */}
                 <div className="p-3">
-                  <div className="text-[10px] font-bold text-foreground mb-3">Orders</div>
+                  <div className="text-[10px] font-bold text-foreground mb-3">{t.hero.mockup.orders}</div>
                   <div className="space-y-2">
                     {[
-                      { status: "Ready", color: "bg-mint" },
-                      { status: "Cooking", color: "bg-primary" },
-                      { status: "New", color: "bg-coral" },
-                      { status: "Pending", color: "bg-muted-foreground/30" },
+                      { status: t.hero.mockup.ready, color: "bg-mint" },
+                      { status: t.hero.mockup.cooking, color: "bg-primary" },
+                      { status: t.hero.mockup.new, color: "bg-coral" },
+                      { status: t.hero.mockup.pending, color: "bg-muted-foreground/30" },
                     ].map((order, i) => (
                       <div key={i} className="p-2 rounded-lg bg-muted/50">
                         <div className="flex items-center justify-between mb-1.5">
@@ -134,23 +143,18 @@ const HeroSection = () => {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
             <Button variant="hero" size="xl" className="w-full sm:w-auto group">
-              Get Demo
+              {t.hero.getDemo}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
             <Button variant="outline" size="xl" className="w-full sm:w-auto group">
               <Play className="w-5 h-5" />
-              Watch Video
+              {t.hero.watchVideo}
             </Button>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-12 mt-16 lg:mt-24 animate-fade-up" style={{ animationDelay: "0.4s" }}>
-            {[
-              { value: "1,000+", label: "Active Restaurants" },
-              { value: "99.9%", label: "Uptime" },
-              { value: "50K+", label: "Daily Orders" },
-              { value: "4.9/5", label: "Customer Rating" },
-            ].map((stat, index) => (
+            {stats.map((stat, index) => (
               <div key={index} className="text-center">
                 <div className="text-3xl lg:text-4xl font-bold text-foreground mb-1">
                   {stat.value}

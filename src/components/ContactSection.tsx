@@ -5,9 +5,11 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
 import { Send, MapPin, Mail, Phone } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const ContactSection = () => {
   const { toast } = useToast();
+  const { t } = useLanguage();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -34,8 +36,8 @@ const ContactSection = () => {
     await new Promise((resolve) => setTimeout(resolve, 1000));
 
     toast({
-      title: "Demo Request Submitted!",
-      description: "We'll contact you within 24 hours to schedule your demo.",
+      title: t.contact.toast.title,
+      description: t.contact.toast.description,
     });
 
     setFormData({
@@ -51,18 +53,18 @@ const ContactSection = () => {
   const contactInfo = [
     {
       icon: MapPin,
-      title: "Visit Us",
-      content: "123 Restaurant Street, Food City, FC 12345",
+      title: t.contact.info.visitUs,
+      content: t.contact.info.address,
     },
     {
       icon: Mail,
-      title: "Email Us",
-      content: "hello@smartorder.com",
+      title: t.contact.info.emailUs,
+      content: t.contact.info.email,
     },
     {
       icon: Phone,
-      title: "Call Us",
-      content: "+1 (555) 123-4567",
+      title: t.contact.info.callUs,
+      content: t.contact.info.phone,
     },
   ];
 
@@ -76,15 +78,14 @@ const ContactSection = () => {
           {/* Left Column - Info */}
           <div>
             <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary font-medium text-sm mb-4">
-              Get in Touch
+              {t.contact.badge}
             </span>
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-foreground mb-4">
-              Request Your
-              <span className="text-gradient"> Free Demo</span>
+              {t.contact.title}
+              <span className="text-gradient">{t.contact.titleHighlight}</span>
             </h2>
             <p className="text-lg text-muted-foreground mb-10">
-              See how SmartOrder can transform your restaurant operations. 
-              Fill out the form and our team will reach out within 24 hours.
+              {t.contact.subtitle}
             </p>
 
             {/* Contact Info Cards */}
@@ -113,23 +114,23 @@ const ContactSection = () => {
             <form onSubmit={handleSubmit} className="space-y-5">
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <Label htmlFor="name">Full Name</Label>
+                  <Label htmlFor="name">{t.contact.form.fullName}</Label>
                   <Input
                     id="name"
                     name="name"
-                    placeholder="John Doe"
+                    placeholder={t.contact.form.namePlaceholder}
                     value={formData.name}
                     onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email">Email Address</Label>
+                  <Label htmlFor="email">{t.contact.form.email}</Label>
                   <Input
                     id="email"
                     name="email"
                     type="email"
-                    placeholder="john@restaurant.com"
+                    placeholder={t.contact.form.emailPlaceholder}
                     value={formData.email}
                     onChange={handleChange}
                     required
@@ -139,23 +140,23 @@ const ContactSection = () => {
 
               <div className="grid sm:grid-cols-2 gap-5">
                 <div className="space-y-2">
-                  <Label htmlFor="phone">Phone Number</Label>
+                  <Label htmlFor="phone">{t.contact.form.phone}</Label>
                   <Input
                     id="phone"
                     name="phone"
                     type="tel"
-                    placeholder="+1 (555) 000-0000"
+                    placeholder={t.contact.form.phonePlaceholder}
                     value={formData.phone}
                     onChange={handleChange}
                     required
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="shopName">Restaurant Name</Label>
+                  <Label htmlFor="shopName">{t.contact.form.restaurantName}</Label>
                   <Input
                     id="shopName"
                     name="shopName"
-                    placeholder="My Restaurant"
+                    placeholder={t.contact.form.restaurantPlaceholder}
                     value={formData.shopName}
                     onChange={handleChange}
                     required
@@ -164,11 +165,11 @@ const ContactSection = () => {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="message">Message (Optional)</Label>
+                <Label htmlFor="message">{t.contact.form.message}</Label>
                 <Textarea
                   id="message"
                   name="message"
-                  placeholder="Tell us about your restaurant and what you're looking for..."
+                  placeholder={t.contact.form.messagePlaceholder}
                   value={formData.message}
                   onChange={handleChange}
                   rows={4}
@@ -183,17 +184,17 @@ const ContactSection = () => {
                 disabled={isSubmitting}
               >
                 {isSubmitting ? (
-                  "Sending..."
+                  t.contact.form.sending
                 ) : (
                   <>
-                    Submit Request
+                    {t.contact.form.submit}
                     <Send className="w-4 h-4" />
                   </>
                 )}
               </Button>
 
               <p className="text-xs text-muted-foreground text-center">
-                By submitting, you agree to our Privacy Policy and Terms of Service.
+                {t.contact.form.disclaimer}
               </p>
             </form>
           </div>

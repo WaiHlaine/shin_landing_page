@@ -1,30 +1,33 @@
 import { Utensils, Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
+  const { t } = useLanguage();
+
   const footerLinks = {
-    product: [
-      { label: "Features", href: "#features" },
-      { label: "Pricing", href: "#pricing" },
-      { label: "Demo", href: "#contact" },
-      { label: "Updates", href: "#" },
+    [t.footer.product]: [
+      { label: t.footer.links.features, href: "#features" },
+      { label: t.footer.links.pricing, href: "#pricing" },
+      { label: t.footer.links.demo, href: "#contact" },
+      { label: t.footer.links.updates, href: "#" },
     ],
-    company: [
-      { label: "About", href: "#" },
-      { label: "Careers", href: "#" },
-      { label: "Blog", href: "#" },
-      { label: "Press", href: "#" },
+    [t.footer.company]: [
+      { label: t.footer.links.about, href: "#" },
+      { label: t.footer.links.careers, href: "#" },
+      { label: t.footer.links.blog, href: "#" },
+      { label: t.footer.links.press, href: "#" },
     ],
-    support: [
-      { label: "Help Center", href: "#" },
-      { label: "Contact", href: "#contact" },
-      { label: "Status", href: "#" },
-      { label: "API Docs", href: "#" },
+    [t.footer.support]: [
+      { label: t.footer.links.helpCenter, href: "#" },
+      { label: t.footer.links.contact, href: "#contact" },
+      { label: t.footer.links.status, href: "#" },
+      { label: t.footer.links.apiDocs, href: "#" },
     ],
-    legal: [
-      { label: "Privacy", href: "#" },
-      { label: "Terms", href: "#" },
-      { label: "Cookies", href: "#" },
-      { label: "Licenses", href: "#" },
+    [t.footer.legal]: [
+      { label: t.footer.links.privacy, href: "#" },
+      { label: t.footer.links.terms, href: "#" },
+      { label: t.footer.links.cookies, href: "#" },
+      { label: t.footer.links.licenses, href: "#" },
     ],
   };
 
@@ -49,7 +52,7 @@ const Footer = () => {
               <span className="text-xl font-bold">Apollo</span>
             </a>
             <p className="text-primary-foreground/70 text-sm mb-6 max-w-xs">
-              Empowering restaurants with modern ordering technology. Simple, fast, and affordable solutions for every restaurant.
+              {t.footer.description}
             </p>
             {/* Social Links */}
             <div className="flex items-center gap-3">
@@ -91,20 +94,20 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} Apollo. All rights reserved.
+            © {new Date().getFullYear()} Apollo. {t.footer.copyright}
           </p>
           <div className="flex items-center gap-6">
             <a
               href="#"
               className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
             >
-              Privacy Policy
+              {t.footer.privacyPolicy}
             </a>
             <a
               href="#"
               className="text-sm text-primary-foreground/60 hover:text-primary-foreground transition-colors"
             >
-              Terms of Service
+              {t.footer.termsOfService}
             </a>
           </div>
         </div>
