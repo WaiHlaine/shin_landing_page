@@ -47,7 +47,10 @@ const GlobalPresenceSection = () => {
                 >
                   <div className="group relative bg-card rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border border-border h-full">
                     <div className="flex flex-col items-center text-center">
-                      <span className="text-6xl mb-4">{country.flag}</span>
+                      <span className="text-5xl mb-4">{country.flag}</span>
+                      <h3 className="text-xl font-bold text-foreground mb-2">
+                        {t.globalPresence.countries[country.key as keyof typeof t.globalPresence.countries]}
+                      </h3>
                       <div className="flex items-center gap-2 text-primary">
                         <Store className="w-5 h-5" />
                         <span className="text-2xl font-bold">{country.shops}</span>
