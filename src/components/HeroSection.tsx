@@ -1,9 +1,12 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
+import DemoRequestModal from "./DemoRequestModal";
 
 const HeroSection = () => {
   const { t } = useLanguage();
+  const [demoModalOpen, setDemoModalOpen] = useState(false);
 
   const stats = [
     { value: "1,000+", label: t.hero.stats.restaurants },
@@ -142,7 +145,7 @@ const HeroSection = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-up" style={{ animationDelay: "0.3s" }}>
-            <Button variant="hero" size="xl" className="w-full sm:w-auto group">
+            <Button variant="hero" size="xl" className="w-full sm:w-auto group" onClick={() => setDemoModalOpen(true)}>
               {t.hero.getDemo}
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
@@ -165,6 +168,8 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+
+      <DemoRequestModal open={demoModalOpen} onOpenChange={setDemoModalOpen} />
     </section>
   );
 };
