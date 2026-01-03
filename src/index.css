@@ -1,4 +1,26 @@
 @tailwind base;
+
+/* Flow animation for realtime view */
+@keyframes flow-right {
+  0% {
+    left: 0;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: calc(100% - 8px);
+    opacity: 0;
+  }
+}
+
+.animate-flow-right {
+  animation: flow-right 2s ease-in-out infinite;
+}
 @tailwind components;
 @tailwind utilities;
 
