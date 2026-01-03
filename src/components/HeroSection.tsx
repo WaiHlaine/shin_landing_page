@@ -4,12 +4,12 @@ import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich
 import { useLanguage } from "@/i18n/LanguageContext";
 import DemoRequestModal from "./DemoRequestModal";
 
-type MockupView = "qr" | "cashier" | "kitchen" | "summary";
+type MockupView = "summary" | "qr" | "cashier" | "kitchen";
 
 const HeroSection = () => {
   const { t } = useLanguage();
   const [demoModalOpen, setDemoModalOpen] = useState(false);
-  const [activeView, setActiveView] = useState<MockupView>("qr");
+  const [activeView, setActiveView] = useState<MockupView>("summary");
 
   const stats = [
     { value: "1,000+", label: t.hero.stats.restaurants },
@@ -19,10 +19,10 @@ const HeroSection = () => {
   ];
 
   const viewTabs = [
+    { id: "summary" as const, label: "Realtime", icon: BarChart3 },
     { id: "qr" as const, label: "QR Order", icon: Pizza },
     { id: "cashier" as const, label: "Cashier", icon: CreditCard },
     { id: "kitchen" as const, label: "Kitchen", icon: ChefHat },
-    { id: "summary" as const, label: "Realtime", icon: BarChart3 },
   ];
 
   // QR Order View (existing)
@@ -158,70 +158,92 @@ const HeroSection = () => {
   );
 
   // Summary/Realtime View
-  const SummaryView = () => (
-    <div className="h-full p-3 sm:p-4">
-      <div className="text-xs sm:text-sm font-bold text-foreground mb-2">Realtime Flow</div>
-      
-      {/* Connection indicators */}
-      <div className="flex items-center gap-3 mb-3">
-        <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-mint/20">
-          <Wifi className="w-3 h-3 text-mint animate-pulse" />
-          <span className="text-[9px] text-mint font-medium">WebSocket</span>
+  const SummaryView = () => {
+    const [selectedProtocol, setSelectedProtocol] = useState<"websocket" | "https">("websocket");
+    
+    return (
+      <div className="h-full p-3 sm:p-4">
+        <div className="text-xs sm:text-sm font-bold text-foreground mb-2">Realtime Flow</div>
+        
+        {/* Connection indicators - clickable */}
+        <div className="flex items-center gap-3 mb-3">
+          <button 
+            onClick={() => setSelectedProtocol("websocket")}
+            className={`flex items-center gap-1.5 px-2 py-1 rounded-full transition-all ${
+              selectedProtocol === "websocket" 
+                ? "bg-mint/30 ring-2 ring-mint" 
+                : "bg-mint/10 hover:bg-mint/20"
+            }`}
+          >
+            <Wifi className={`w-3 h-3 text-mint ${selectedProtocol === "websocket" ? "animate-pulse" : ""}`} />
+            <span className="text-[9px] text-mint font-medium">WebSocket</span>
+          </button>
+          <button 
+            onClick={() => setSelectedProtocol("https")}
+            className={`flex items-center gap-1.5 px-2 py-1 rounded-full transition-all ${
+              selectedProtocol === "https" 
+                ? "bg-primary/30 ring-2 ring-primary" 
+                : "bg-primary/10 hover:bg-primary/20"
+            }`}
+          >
+            <Globe className={`w-3 h-3 text-primary ${selectedProtocol === "https" ? "animate-pulse" : ""}`} />
+            <span className="text-[9px] text-primary font-medium">HTTPS</span>
+          </button>
         </div>
-        <div className="flex items-center gap-1.5 px-2 py-1 rounded-full bg-primary/20">
-          <Globe className="w-3 h-3 text-primary" />
-          <span className="text-[9px] text-primary font-medium">HTTPS</span>
-        </div>
-      </div>
 
-      {/* Flow animation */}
-      <div className="relative mb-3">
-        <div className="flex items-center justify-between text-[8px] mb-1">
-          <span className="text-muted-foreground">Client</span>
-          <span className="text-muted-foreground">Server</span>
-          <span className="text-muted-foreground">Kitchen</span>
+        {/* Flow animation with 4 nodes: QR -> Cashier -> Server -> Kitchen */}
+        <div className="relative mb-3">
+          <div className="flex items-center justify-between text-[8px] mb-1 px-1">
+            <span className="text-muted-foreground">QR</span>
+            <span className="text-muted-foreground">Cashier</span>
+            <span className="text-muted-foreground">Server</span>
+            <span className="text-muted-foreground">Kitchen</span>
+          </div>
+          <div className="h-8 relative">
+            {/* Flow lines */}
+            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-muted" />
+            {/* Animated dots */}
+            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s' }} />
+            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s', animationDelay: '0.6s' }} />
+            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s', animationDelay: '1.2s' }} />
+            {/* Nodes - 4 nodes evenly spaced */}
+            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-foreground flex items-center justify-center">
+              <Pizza className="w-2 h-2 text-background" />
+            </div>
+            <div className="absolute left-[33%] -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-navy flex items-center justify-center animate-pulse">
+              <CreditCard className="w-2 h-2 text-white" />
+            </div>
+            <div className="absolute left-[66%] -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+              <Wifi className="w-2 h-2 text-white" />
+            </div>
+            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-coral flex items-center justify-center animate-pulse">
+              <ChefHat className="w-2 h-2 text-white" />
+            </div>
+          </div>
         </div>
-        <div className="h-8 relative">
-          {/* Flow lines */}
-          <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-muted" />
-          {/* Animated dots */}
-          <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-primary animate-flow-right" style={{ animationDuration: '2s' }} />
-          <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-mint animate-flow-right" style={{ animationDuration: '2s', animationDelay: '0.5s' }} />
-          <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-coral animate-flow-right" style={{ animationDuration: '2s', animationDelay: '1s' }} />
-          {/* Nodes */}
-          <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-foreground flex items-center justify-center">
-            <Users className="w-2 h-2 text-background" />
-          </div>
-          <div className="absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary flex items-center justify-center">
-            <Wifi className="w-2 h-2 text-white" />
-          </div>
-          <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-coral flex items-center justify-center">
-            <ChefHat className="w-2 h-2 text-white" />
-          </div>
-        </div>
-      </div>
 
-      {/* Live stats */}
-      <div className="grid grid-cols-2 gap-2">
-        <div className="p-2 rounded-lg bg-mint/10">
-          <div className="flex items-center gap-1 mb-1">
-            <TrendingUp className="w-3 h-3 text-mint" />
-            <span className="text-[9px] text-mint font-medium">Live Orders</span>
+        {/* Live stats */}
+        <div className="grid grid-cols-2 gap-2">
+          <div className="p-2 rounded-lg bg-mint/10">
+            <div className="flex items-center gap-1 mb-1">
+              <TrendingUp className="w-3 h-3 text-mint" />
+              <span className="text-[9px] text-mint font-medium">Live Orders</span>
+            </div>
+            <div className="text-sm font-bold text-foreground">24</div>
+            <div className="text-[8px] text-muted-foreground">+3 in queue</div>
           </div>
-          <div className="text-sm font-bold text-foreground">24</div>
-          <div className="text-[8px] text-muted-foreground">+3 in queue</div>
-        </div>
-        <div className="p-2 rounded-lg bg-primary/10">
-          <div className="flex items-center gap-1 mb-1">
-            <BarChart3 className="w-3 h-3 text-primary" />
-            <span className="text-[9px] text-primary font-medium">Revenue</span>
+          <div className="p-2 rounded-lg bg-primary/10">
+            <div className="flex items-center gap-1 mb-1">
+              <BarChart3 className="w-3 h-3 text-primary" />
+              <span className="text-[9px] text-primary font-medium">Revenue</span>
+            </div>
+            <div className="text-sm font-bold text-foreground">$1,284</div>
+            <div className="text-[8px] text-muted-foreground">Today</div>
           </div>
-          <div className="text-sm font-bold text-foreground">$1,284</div>
-          <div className="text-[8px] text-muted-foreground">Today</div>
         </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Phone View based on active tab
   const PhoneView = () => {
