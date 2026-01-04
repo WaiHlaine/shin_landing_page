@@ -176,7 +176,7 @@ const HeroSection = () => {
             }`}
           >
             <Wifi className={`w-3 h-3 text-mint ${selectedProtocol === "websocket" ? "animate-pulse" : ""}`} />
-            <span className="text-[9px] text-mint font-medium">WebSocket</span>
+            <span className="text-[9px] text-mint font-medium">SecureWebSocket</span>
           </button>
           <button 
             onClick={() => setSelectedProtocol("https")}
@@ -191,32 +191,59 @@ const HeroSection = () => {
           </button>
         </div>
 
-        {/* Flow animation with 4 nodes: QR -> Cashier -> Server -> Kitchen */}
+        {/* Flow animation: QR -> Server -> (Cashier & Kitchen) branching */}
         <div className="relative mb-3">
-          <div className="flex items-center justify-between text-[8px] mb-1 px-1">
-            <span className="text-muted-foreground">QR</span>
-            <span className="text-muted-foreground">Cashier</span>
-            <span className="text-muted-foreground">Server</span>
-            <span className="text-muted-foreground">Kitchen</span>
+          {/* Labels */}
+          <div className="flex text-[8px] mb-1 px-1">
+            <span className="text-muted-foreground w-[20%]">QR</span>
+            <span className="text-muted-foreground w-[30%] text-center">Server</span>
+            <span className="text-muted-foreground w-[25%] text-center">Cashier</span>
+            <span className="text-muted-foreground w-[25%] text-right">Kitchen</span>
           </div>
-          <div className="h-8 relative">
-            {/* Flow lines */}
-            <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-muted" />
-            {/* Animated dots */}
-            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s' }} />
-            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s', animationDelay: '0.6s' }} />
-            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2.5s', animationDelay: '1.2s' }} />
-            {/* Nodes - 4 nodes evenly spaced */}
+          <div className="h-14 relative">
+            {/* Main horizontal line QR to Server */}
+            <div className="absolute top-1/2 left-[8px] w-[35%] h-0.5 bg-muted" />
+            {/* Branch line from Server to Cashier (top) */}
+            <div className="absolute top-[25%] left-[42%] w-[30%] h-0.5 bg-muted" />
+            {/* Branch line from Server to Kitchen (bottom) */}
+            <div className="absolute top-[75%] left-[42%] w-[30%] h-0.5 bg-muted" />
+            {/* Vertical connector at Server */}
+            <div className="absolute top-[25%] left-[42%] w-0.5 h-[50%] bg-muted" />
+            
+            {/* Animated dots - QR to Server */}
+            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2s', left: '8px', animationIterationCount: 'infinite' }} />
+            
+            {/* Animated dots - Server to Cashier (top branch) */}
+            <div className={`absolute top-[25%] -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"}`} style={{ 
+              left: '42%',
+              animation: 'flow-branch-top 2s ease-in-out infinite',
+              animationDelay: '0.8s'
+            }} />
+            
+            {/* Animated dots - Server to Kitchen (bottom branch) */}
+            <div className={`absolute top-[75%] -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"}`} style={{ 
+              left: '42%',
+              animation: 'flow-branch-bottom 2s ease-in-out infinite',
+              animationDelay: '0.8s'
+            }} />
+            
+            {/* QR Node */}
             <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-foreground flex items-center justify-center">
               <Pizza className="w-2 h-2 text-background" />
             </div>
-            <div className="absolute left-[33%] -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-navy flex items-center justify-center animate-pulse">
-              <CreditCard className="w-2 h-2 text-white" />
-            </div>
-            <div className="absolute left-[66%] -translate-x-1/2 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary flex items-center justify-center">
+            
+            {/* Server Node */}
+            <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary flex items-center justify-center animate-pulse">
               <Wifi className="w-2 h-2 text-white" />
             </div>
-            <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-coral flex items-center justify-center animate-pulse">
+            
+            {/* Cashier Node (top) */}
+            <div className="absolute right-[22%] top-[25%] -translate-y-1/2 w-4 h-4 rounded-full bg-navy flex items-center justify-center animate-pulse">
+              <CreditCard className="w-2 h-2 text-white" />
+            </div>
+            
+            {/* Kitchen Node (bottom) */}
+            <div className="absolute right-[22%] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-coral flex items-center justify-center animate-pulse">
               <ChefHat className="w-2 h-2 text-white" />
             </div>
           </div>

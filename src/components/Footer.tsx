@@ -49,7 +49,7 @@ const Footer = () => {
               <div className="w-10 h-10 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
                 <Utensils className="w-5 h-5 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold">Apollo</span>
+              <span className="text-xl font-bold">Shin</span>
             </a>
             <p className="text-primary-foreground/70 text-sm mb-6 max-w-xs">
               {t.footer.description}
@@ -94,7 +94,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="py-6 border-t border-primary-foreground/10 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-sm text-primary-foreground/60">
-            © {new Date().getFullYear()} Apollo. {t.footer.copyright}
+            © {new Date().getFullYear()} Shin. {t.footer.copyright}
           </p>
           <div className="flex items-center gap-6">
             <a
