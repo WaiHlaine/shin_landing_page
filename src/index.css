@@ -3,7 +3,29 @@
 /* Flow animation for realtime view */
 @keyframes flow-right {
   0% {
-    left: 0;
+    left: 8px;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  50% {
+    left: 38%;
+    opacity: 1;
+  }
+  60% {
+    opacity: 0;
+  }
+  100% {
+    left: 38%;
+    opacity: 0;
+  }
+}
+
+/* Branch flow animation to top (Cashier) */
+@keyframes flow-branch-top {
+  0% {
+    left: 42%;
     opacity: 0;
   }
   10% {
@@ -13,7 +35,25 @@
     opacity: 1;
   }
   100% {
-    left: calc(100% - 8px);
+    left: 72%;
+    opacity: 0;
+  }
+}
+
+/* Branch flow animation to bottom (Kitchen) */
+@keyframes flow-branch-bottom {
+  0% {
+    left: 42%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 72%;
     opacity: 0;
   }
 }
