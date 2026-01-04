@@ -161,12 +161,14 @@ const HeroSection = () => {
   const SummaryView = () => {
     const [selectedProtocol, setSelectedProtocol] = useState<"websocket" | "https">("websocket");
     
+    const dotColor = selectedProtocol === "websocket" ? "bg-mint" : "bg-primary";
+    
     return (
       <div className="h-full p-3 sm:p-4">
         <div className="text-xs sm:text-sm font-bold text-foreground mb-2">Realtime Flow</div>
         
-        {/* Connection indicators - clickable */}
-        <div className="flex items-center gap-3 mb-3">
+        {/* Protocol selector */}
+        <div className="flex items-center gap-2 mb-4">
           <button 
             onClick={() => setSelectedProtocol("websocket")}
             className={`flex items-center gap-1.5 px-2 py-1 rounded-full transition-all ${
@@ -175,8 +177,8 @@ const HeroSection = () => {
                 : "bg-mint/10 hover:bg-mint/20"
             }`}
           >
-            <Wifi className={`w-3 h-3 text-mint ${selectedProtocol === "websocket" ? "animate-pulse" : ""}`} />
-            <span className="text-[9px] text-mint font-medium">SecureWebSocket</span>
+            <Shield className={`w-3 h-3 text-mint ${selectedProtocol === "websocket" ? "animate-pulse" : ""}`} />
+            <span className="text-[8px] text-mint font-medium">SecureWebSocket</span>
           </button>
           <button 
             onClick={() => setSelectedProtocol("https")}
@@ -187,65 +189,67 @@ const HeroSection = () => {
             }`}
           >
             <Globe className={`w-3 h-3 text-primary ${selectedProtocol === "https" ? "animate-pulse" : ""}`} />
-            <span className="text-[9px] text-primary font-medium">HTTPS</span>
+            <span className="text-[8px] text-primary font-medium">HTTPS</span>
           </button>
         </div>
 
-        {/* Flow animation: QR -> Server -> (Cashier & Kitchen) branching */}
-        <div className="relative mb-3">
-          {/* Labels */}
-          <div className="flex text-[8px] mb-1 px-1">
-            <span className="text-muted-foreground w-[20%]">QR</span>
-            <span className="text-muted-foreground w-[30%] text-center">Server</span>
-            <span className="text-muted-foreground w-[25%] text-center">Cashier</span>
-            <span className="text-muted-foreground w-[25%] text-right">Kitchen</span>
+        {/* Flow diagram: QR -> Server -> (Cashier & Kitchen) */}
+        <div className="relative h-20 mb-3">
+          {/* Connection lines */}
+          <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
+            {/* QR to Server line */}
+            <line x1="8" y1="40" x2="45%" y2="40" stroke="currentColor" strokeWidth="2" className="text-muted" />
+            {/* Server to Cashier line */}
+            <line x1="45%" y1="40" x2="85%" y2="16" stroke="currentColor" strokeWidth="2" className="text-muted" />
+            {/* Server to Kitchen line */}
+            <line x1="45%" y1="40" x2="85%" y2="64" stroke="currentColor" strokeWidth="2" className="text-muted" />
+          </svg>
+          
+          {/* Animated dots */}
+          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
+            top: '50%', 
+            transform: 'translateY(-50%)',
+            animation: 'flow-to-server 1.5s ease-in-out infinite'
+          }} />
+          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-to-cashier 1.5s ease-in-out infinite',
+            animationDelay: '0.75s'
+          }} />
+          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-to-kitchen 1.5s ease-in-out infinite',
+            animationDelay: '0.75s'
+          }} />
+          
+          {/* QR Node */}
+          <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
+            <div className="w-5 h-5 rounded-full bg-foreground flex items-center justify-center mb-1">
+              <Pizza className="w-3 h-3 text-background" />
+            </div>
+            <span className="text-[7px] text-muted-foreground font-medium">QR</span>
           </div>
-          <div className="h-14 relative">
-            {/* Main horizontal line QR to Server */}
-            <div className="absolute top-1/2 left-[8px] w-[35%] h-0.5 bg-muted" />
-            {/* Branch line from Server to Cashier (top) */}
-            <div className="absolute top-[25%] left-[42%] w-[30%] h-0.5 bg-muted" />
-            {/* Branch line from Server to Kitchen (bottom) */}
-            <div className="absolute top-[75%] left-[42%] w-[30%] h-0.5 bg-muted" />
-            {/* Vertical connector at Server */}
-            <div className="absolute top-[25%] left-[42%] w-0.5 h-[50%] bg-muted" />
-            
-            {/* Animated dots - QR to Server */}
-            <div className={`absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} animate-flow-right`} style={{ animationDuration: '2s', left: '8px', animationIterationCount: 'infinite' }} />
-            
-            {/* Animated dots - Server to Cashier (top branch) */}
-            <div className={`absolute top-[25%] -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"}`} style={{ 
-              left: '42%',
-              animation: 'flow-branch-top 2s ease-in-out infinite',
-              animationDelay: '0.8s'
-            }} />
-            
-            {/* Animated dots - Server to Kitchen (bottom branch) */}
-            <div className={`absolute top-[75%] -translate-y-1/2 w-2 h-2 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"}`} style={{ 
-              left: '42%',
-              animation: 'flow-branch-bottom 2s ease-in-out infinite',
-              animationDelay: '0.8s'
-            }} />
-            
-            {/* QR Node */}
-            <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-foreground flex items-center justify-center">
-              <Pizza className="w-2 h-2 text-background" />
+          
+          {/* Server Node */}
+          <div className="absolute left-[45%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+            <div className={`w-5 h-5 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} flex items-center justify-center mb-1 animate-pulse`}>
+              <Wifi className="w-3 h-3 text-white" />
             </div>
-            
-            {/* Server Node */}
-            <div className="absolute left-[40%] top-1/2 -translate-y-1/2 w-4 h-4 rounded-full bg-primary flex items-center justify-center animate-pulse">
-              <Wifi className="w-2 h-2 text-white" />
+            <span className="text-[7px] text-muted-foreground font-medium">Server</span>
+          </div>
+          
+          {/* Cashier Node */}
+          <div className="absolute right-[5%] top-[20%] -translate-y-1/2 flex flex-col items-center">
+            <div className="w-5 h-5 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse">
+              <CreditCard className="w-3 h-3 text-white" />
             </div>
-            
-            {/* Cashier Node (top) */}
-            <div className="absolute right-[22%] top-[25%] -translate-y-1/2 w-4 h-4 rounded-full bg-navy flex items-center justify-center animate-pulse">
-              <CreditCard className="w-2 h-2 text-white" />
+            <span className="text-[7px] text-muted-foreground font-medium">Cashier</span>
+          </div>
+          
+          {/* Kitchen Node */}
+          <div className="absolute right-[5%] top-[80%] -translate-y-1/2 flex flex-col items-center">
+            <div className="w-5 h-5 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse">
+              <ChefHat className="w-3 h-3 text-white" />
             </div>
-            
-            {/* Kitchen Node (bottom) */}
-            <div className="absolute right-[22%] top-[75%] -translate-y-1/2 w-4 h-4 rounded-full bg-coral flex items-center justify-center animate-pulse">
-              <ChefHat className="w-2 h-2 text-white" />
-            </div>
+            <span className="text-[7px] text-muted-foreground font-medium">Kitchen</span>
           </div>
         </div>
 

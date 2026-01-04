@@ -1,31 +1,10 @@
 @tailwind base;
 
-/* Flow animation for realtime view */
-@keyframes flow-right {
+/* Flow animation: QR to Server */
+@keyframes flow-to-server {
   0% {
     left: 8px;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  50% {
-    left: 38%;
-    opacity: 1;
-  }
-  60% {
-    opacity: 0;
-  }
-  100% {
-    left: 38%;
-    opacity: 0;
-  }
-}
-
-/* Branch flow animation to top (Cashier) */
-@keyframes flow-branch-top {
-  0% {
-    left: 42%;
+    top: 50%;
     opacity: 0;
   }
   10% {
@@ -35,15 +14,17 @@
     opacity: 1;
   }
   100% {
-    left: 72%;
+    left: 42%;
+    top: 50%;
     opacity: 0;
   }
 }
 
-/* Branch flow animation to bottom (Kitchen) */
-@keyframes flow-branch-bottom {
+/* Flow animation: Server to Cashier */
+@keyframes flow-to-cashier {
   0% {
-    left: 42%;
+    left: 45%;
+    top: 50%;
     opacity: 0;
   }
   10% {
@@ -53,13 +34,34 @@
     opacity: 1;
   }
   100% {
-    left: 72%;
+    left: 82%;
+    top: 20%;
+    opacity: 0;
+  }
+}
+
+/* Flow animation: Server to Kitchen */
+@keyframes flow-to-kitchen {
+  0% {
+    left: 45%;
+    top: 50%;
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    left: 82%;
+    top: 80%;
     opacity: 0;
   }
 }
 
 .animate-flow-right {
-  animation: flow-right 2s ease-in-out infinite;
+  animation: flow-to-server 1.5s ease-in-out infinite;
 }
 @tailwind components;
 @tailwind utilities;
