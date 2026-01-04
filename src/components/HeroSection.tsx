@@ -193,63 +193,88 @@ const HeroSection = () => {
           </button>
         </div>
 
-        {/* Flow diagram: QR -> Server -> (Cashier & Kitchen) */}
-        <div className="relative h-20 mb-3">
-          {/* Connection lines */}
+        {/* Flow diagram: QR ↔ Server ↔ (Cashier & Kitchen) - Bidirectional */}
+        <div className="relative h-24 mb-3">
+          {/* Connection lines with arrows */}
           <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
-            {/* QR to Server line */}
-            <line x1="8" y1="40" x2="45%" y2="40" stroke="currentColor" strokeWidth="2" className="text-muted" />
-            {/* Server to Cashier line */}
-            <line x1="45%" y1="40" x2="85%" y2="16" stroke="currentColor" strokeWidth="2" className="text-muted" />
-            {/* Server to Kitchen line */}
-            <line x1="45%" y1="40" x2="85%" y2="64" stroke="currentColor" strokeWidth="2" className="text-muted" />
+            <defs>
+              <marker id="arrowRight" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
+                <path d="M0,0 L0,6 L6,3 z" fill="hsl(var(--muted-foreground))" />
+              </marker>
+              <marker id="arrowLeft" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
+                <path d="M6,0 L6,6 L0,3 z" fill="hsl(var(--muted-foreground))" />
+              </marker>
+            </defs>
+            {/* QR to Server - bidirectional */}
+            <line x1="28" y1="44" x2="38%" y2="44" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
+            <line x1="38%" y1="52" x2="28" y2="52" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
+            {/* Server to Cashier - bidirectional */}
+            <line x1="52%" y1="40" x2="78%" y2="20" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
+            <line x1="78%" y1="28" x2="52%" y2="48" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
+            {/* Server to Kitchen - bidirectional */}
+            <line x1="52%" y1="56" x2="78%" y2="76" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
+            <line x1="78%" y1="68" x2="52%" y2="48" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
           </svg>
           
-          {/* Animated dots */}
-          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
-            top: '50%', 
-            transform: 'translateY(-50%)',
-            animation: 'flow-to-server 1.5s ease-in-out infinite'
+          {/* Animated dots - QR to Server */}
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-qr-to-server 2s ease-in-out infinite'
           }} />
-          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
-            animation: 'flow-to-cashier 1.5s ease-in-out infinite',
-            animationDelay: '0.75s'
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-server-to-qr 2s ease-in-out infinite',
+            animationDelay: '1s'
           }} />
-          <div className={`absolute w-2 h-2 rounded-full ${dotColor}`} style={{ 
-            animation: 'flow-to-kitchen 1.5s ease-in-out infinite',
-            animationDelay: '0.75s'
+          
+          {/* Animated dots - Server to Cashier */}
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-server-to-cashier 2s ease-in-out infinite',
+            animationDelay: '0.5s'
+          }} />
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-cashier-to-server 2s ease-in-out infinite',
+            animationDelay: '1.5s'
+          }} />
+          
+          {/* Animated dots - Server to Kitchen */}
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-server-to-kitchen 2s ease-in-out infinite',
+            animationDelay: '0.5s'
+          }} />
+          <div className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`} style={{ 
+            animation: 'flow-kitchen-to-server 2s ease-in-out infinite',
+            animationDelay: '1.5s'
           }} />
           
           {/* QR Node */}
           <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
-            <div className="w-5 h-5 rounded-full bg-foreground flex items-center justify-center mb-1">
-              <Pizza className="w-3 h-3 text-background" />
+            <div className="w-6 h-6 rounded-full bg-foreground flex items-center justify-center mb-1">
+              <Pizza className="w-3.5 h-3.5 text-background" />
             </div>
-            <span className="text-[7px] text-muted-foreground font-medium">QR</span>
+            <span className="text-[8px] text-muted-foreground font-medium">QR</span>
           </div>
           
           {/* Server Node */}
           <div className="absolute left-[45%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-            <div className={`w-5 h-5 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} flex items-center justify-center mb-1 animate-pulse`}>
-              <Wifi className="w-3 h-3 text-white" />
+            <div className={`w-6 h-6 rounded-full ${selectedProtocol === "websocket" ? "bg-mint" : "bg-primary"} flex items-center justify-center mb-1 animate-pulse`}>
+              <Wifi className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="text-[7px] text-muted-foreground font-medium">Server</span>
+            <span className="text-[8px] text-muted-foreground font-medium">Server</span>
           </div>
           
           {/* Cashier Node */}
-          <div className="absolute right-[5%] top-[20%] -translate-y-1/2 flex flex-col items-center">
-            <div className="w-5 h-5 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse">
-              <CreditCard className="w-3 h-3 text-white" />
+          <div className="absolute right-0 top-[20%] -translate-y-1/2 flex flex-col items-center">
+            <div className="w-6 h-6 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse">
+              <CreditCard className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="text-[7px] text-muted-foreground font-medium">Cashier</span>
+            <span className="text-[8px] text-muted-foreground font-medium">Cashier</span>
           </div>
           
           {/* Kitchen Node */}
-          <div className="absolute right-[5%] top-[80%] -translate-y-1/2 flex flex-col items-center">
-            <div className="w-5 h-5 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse">
-              <ChefHat className="w-3 h-3 text-white" />
+          <div className="absolute right-0 top-[80%] -translate-y-1/2 flex flex-col items-center">
+            <div className="w-6 h-6 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse">
+              <ChefHat className="w-3.5 h-3.5 text-white" />
             </div>
-            <span className="text-[7px] text-muted-foreground font-medium">Kitchen</span>
+            <span className="text-[8px] text-muted-foreground font-medium">Kitchen</span>
           </div>
         </div>
 

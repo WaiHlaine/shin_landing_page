@@ -1,67 +1,53 @@
 @tailwind base;
 
-/* Flow animation: QR to Server */
-@keyframes flow-to-server {
-  0% {
-    left: 8px;
-    top: 50%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 42%;
-    top: 50%;
-    opacity: 0;
-  }
+/* Bidirectional Flow Animations */
+
+/* QR to Server */
+@keyframes flow-qr-to-server {
+  0% { left: 28px; top: 42px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 38%; top: 42px; opacity: 0; }
 }
 
-/* Flow animation: Server to Cashier */
-@keyframes flow-to-cashier {
-  0% {
-    left: 45%;
-    top: 50%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 82%;
-    top: 20%;
-    opacity: 0;
-  }
+/* Server to QR */
+@keyframes flow-server-to-qr {
+  0% { left: 38%; top: 50px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 28px; top: 50px; opacity: 0; }
 }
 
-/* Flow animation: Server to Kitchen */
-@keyframes flow-to-kitchen {
-  0% {
-    left: 45%;
-    top: 50%;
-    opacity: 0;
-  }
-  10% {
-    opacity: 1;
-  }
-  90% {
-    opacity: 1;
-  }
-  100% {
-    left: 82%;
-    top: 80%;
-    opacity: 0;
-  }
+/* Server to Cashier */
+@keyframes flow-server-to-cashier {
+  0% { left: 52%; top: 38px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 78%; top: 18px; opacity: 0; }
 }
 
-.animate-flow-right {
-  animation: flow-to-server 1.5s ease-in-out infinite;
+/* Cashier to Server */
+@keyframes flow-cashier-to-server {
+  0% { left: 78%; top: 26px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 52%; top: 46px; opacity: 0; }
+}
+
+/* Server to Kitchen */
+@keyframes flow-server-to-kitchen {
+  0% { left: 52%; top: 54px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 78%; top: 74px; opacity: 0; }
+}
+
+/* Kitchen to Server */
+@keyframes flow-kitchen-to-server {
+  0% { left: 78%; top: 66px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 52%; top: 46px; opacity: 0; }
 }
 @tailwind components;
 @tailwind utilities;
