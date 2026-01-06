@@ -162,8 +162,9 @@ const HeroSection = () => {
     const [selectedProtocol, setSelectedProtocol] = useState<"websocket" | "https">("websocket");
     
     const protocolConfig = {
-      websocket: { dotColor: "bg-mint", nodeColor: "bg-mint", textColor: "text-mint" },
-      https: { dotColor: "bg-primary", nodeColor: "bg-primary", textColor: "text-primary" }
+      // Use the same visual treatment as HTTPS so the SecureWebSocket tab clearly shows the animation.
+      websocket: { dotColor: "bg-primary", nodeColor: "bg-primary" },
+      https: { dotColor: "bg-primary", nodeColor: "bg-primary" },
     };
     
     const config = protocolConfig[selectedProtocol];
@@ -171,55 +172,61 @@ const HeroSection = () => {
     // Shared flow diagram component
     const FlowDiagram = () => (
       <div className="relative h-24 mb-3">
-        {/* Connection lines with arrows */}
-        <svg className="absolute inset-0 w-full h-full" style={{ overflow: 'visible' }}>
+        {/* Connection lines with one-direction arrows */}
+        <svg className="absolute inset-0 w-full h-full" style={{ overflow: "visible" }}>
           <defs>
             <marker id="arrowRight" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto">
               <path d="M0,0 L0,6 L6,3 z" fill="hsl(var(--muted-foreground))" />
             </marker>
-            <marker id="arrowLeft" markerWidth="6" markerHeight="6" refX="1" refY="3" orient="auto">
-              <path d="M6,0 L6,6 L0,3 z" fill="hsl(var(--muted-foreground))" />
-            </marker>
           </defs>
-          {/* QR to Server - bidirectional */}
-          <line x1="28" y1="44" x2="38%" y2="44" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
-          <line x1="38%" y1="52" x2="28" y2="52" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
-          {/* Server to Cashier - bidirectional */}
-          <line x1="52%" y1="40" x2="78%" y2="20" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
-          <line x1="78%" y1="28" x2="52%" y2="48" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
-          {/* Server to Kitchen - bidirectional */}
-          <line x1="52%" y1="56" x2="78%" y2="76" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowRight)" />
-          <line x1="78%" y1="68" x2="52%" y2="48" stroke="hsl(var(--muted-foreground))" strokeWidth="1.5" markerEnd="url(#arrowLeft)" />
+
+          {/* QR → Server */}
+          <line
+            x1="28"
+            y1="48"
+            x2="38%"
+            y2="48"
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="1.5"
+            markerEnd="url(#arrowRight)"
+          />
+
+          {/* Server → Cashier */}
+          <line
+            x1="52%"
+            y1="48"
+            x2="78%"
+            y2="22"
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="1.5"
+            markerEnd="url(#arrowRight)"
+          />
+
+          {/* Server → Kitchen */}
+          <line
+            x1="52%"
+            y1="48"
+            x2="78%"
+            y2="74"
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="1.5"
+            markerEnd="url(#arrowRight)"
+          />
         </svg>
         
-        {/* Animated dots - QR to Server */}
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-qr-to-server 2s ease-in-out infinite'
-        }} />
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-server-to-qr 2s ease-in-out infinite',
-          animationDelay: '1s'
-        }} />
-        
-        {/* Animated dots - Server to Cashier */}
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-server-to-cashier 2s ease-in-out infinite',
-          animationDelay: '0.5s'
-        }} />
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-cashier-to-server 2s ease-in-out infinite',
-          animationDelay: '1.5s'
-        }} />
-        
-        {/* Animated dots - Server to Kitchen */}
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-server-to-kitchen 2s ease-in-out infinite',
-          animationDelay: '0.5s'
-        }} />
-        <div className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`} style={{ 
-          animation: 'flow-kitchen-to-server 2s ease-in-out infinite',
-          animationDelay: '1.5s'
-        }} />
+        {/* Animated dots */}
+        <div
+          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          style={{ animation: "flow-qr-to-server 2s ease-in-out infinite" }}
+        />
+        <div
+          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          style={{ animation: "flow-server-to-cashier 2s ease-in-out infinite", animationDelay: "0.4s" }}
+        />
+        <div
+          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          style={{ animation: "flow-server-to-kitchen 2s ease-in-out infinite", animationDelay: "0.8s" }}
+        />
         
         {/* QR Node */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
