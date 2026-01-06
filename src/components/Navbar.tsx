@@ -19,14 +19,28 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-card/80 backdrop-blur-lg border-b border-border">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          {/* Logo */}
+          {/* Logo - S shape connecting Shop and System */}
           <a href="#" className="flex items-center gap-2 group">
             <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
-              <Utensils className="w-5 h-5 text-primary-foreground" />
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-primary-foreground">
+                {/* S shape with connection design */}
+                <path 
+                  d="M17 6C17 6 15 4 12 4C9 4 7 6 7 8C7 10 9 11 12 12C15 13 17 14 17 16C17 18 15 20 12 20C9 20 7 18 7 18" 
+                  stroke="currentColor" 
+                  strokeWidth="2.5" 
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Connection dots - Shop (top) */}
+                <circle cx="17" cy="6" r="2" fill="currentColor" />
+                {/* Connection dots - System (bottom) */}
+                <circle cx="7" cy="18" r="2" fill="currentColor" />
+              </svg>
             </div>
-            <span className="text-xl font-bold text-foreground">
-              Shin
-            </span>
+            <div className="flex flex-col leading-none">
+              <span className="text-xl font-bold text-foreground">Shin</span>
+              <span className="text-[8px] text-muted-foreground tracking-wider">Shop • System</span>
+            </div>
           </a>
 
           {/* Desktop Navigation */}
