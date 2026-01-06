@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin, Store, Cpu } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
@@ -48,20 +48,23 @@ const Footer = () => {
             <a href="#" className="flex items-center gap-2 mb-4">
               <div className="w-10 h-10 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-primary-foreground">
-                  <path 
-                    d="M17 6C17 6 15 4 12 4C9 4 7 6 7 8C7 10 9 11 12 12C15 13 17 14 17 16C17 18 15 20 12 20C9 20 7 18 7 18" 
-                    stroke="currentColor" 
-                    strokeWidth="2.5" 
+                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" opacity="0.9" />
+                  <path
+                    d="M16 8C16 8 14.5 6.5 12 6.5C9.5 6.5 8 8 8 9.5C8 11 9.5 11.8 12 12.5C14.5 13.2 16 14 16 15.5C16 17 14.5 18.5 12 18.5C9.5 18.5 8 17 8 17"
+                    stroke="currentColor"
+                    strokeWidth="2.4"
                     strokeLinecap="round"
                     fill="none"
                   />
-                  <circle cx="17" cy="6" r="2" fill="currentColor" />
-                  <circle cx="7" cy="18" r="2" fill="currentColor" />
                 </svg>
               </div>
               <div className="flex flex-col leading-none">
                 <span className="text-xl font-bold text-primary-foreground">Shin</span>
-                <span className="text-[8px] text-primary-foreground/60 tracking-wider">Shop • System</span>
+                <div className="mt-0.5 flex items-center gap-1.5 text-primary-foreground/70">
+                  <Store className="w-3 h-3" aria-label="Shop" />
+                  <span className="h-px w-5 bg-primary-foreground/20" aria-hidden />
+                  <Cpu className="w-3 h-3" aria-label="System" />
+                </div>
               </div>
             </a>
             <p className="text-primary-foreground/70 text-sm mb-6 max-w-xs">

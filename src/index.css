@@ -4,39 +4,23 @@
 
 /* QR to Server */
 @keyframes flow-qr-to-server {
-  0% { left: 28px; top: 42px; opacity: 0; }
+  0% { left: 28px; top: 48px; opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { left: 38%; top: 42px; opacity: 0; }
-}
-
-/* Server to QR */
-@keyframes flow-server-to-qr {
-  0% { left: 38%; top: 50px; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 28px; top: 50px; opacity: 0; }
+  100% { left: 38%; top: 48px; opacity: 0; }
 }
 
 /* Server to Cashier */
 @keyframes flow-server-to-cashier {
-  0% { left: 52%; top: 38px; opacity: 0; }
+  0% { left: 52%; top: 48px; opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { left: 78%; top: 18px; opacity: 0; }
-}
-
-/* Cashier to Server */
-@keyframes flow-cashier-to-server {
-  0% { left: 78%; top: 26px; opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { left: 52%; top: 46px; opacity: 0; }
+  100% { left: 78%; top: 22px; opacity: 0; }
 }
 
 /* Server to Kitchen */
 @keyframes flow-server-to-kitchen {
-  0% { left: 52%; top: 54px; opacity: 0; }
+  0% { left: 52%; top: 48px; opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { left: 78%; top: 74px; opacity: 0; }
