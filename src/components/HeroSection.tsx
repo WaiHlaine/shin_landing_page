@@ -161,13 +161,13 @@ const HeroSection = () => {
   const SummaryView = () => {
     const [selectedProtocol, setSelectedProtocol] = useState<"websocket" | "https">("websocket");
     
-    const protocolConfig = {
-      // Use the same visual treatment as HTTPS so the SecureWebSocket tab clearly shows the animation.
-      websocket: { dotColor: "bg-primary", nodeColor: "bg-primary" },
-      https: { dotColor: "bg-primary", nodeColor: "bg-primary" },
-    };
+    const isWebSocket = selectedProtocol === "websocket";
     
-    const config = protocolConfig[selectedProtocol];
+    // Protocol-specific styling
+    const dotColor = isWebSocket ? "bg-mint" : "bg-primary";
+    const serverColor = isWebSocket ? "bg-mint" : "bg-primary";
+    const glowClass = isWebSocket ? "shadow-[0_0_12px_hsl(var(--mint)/0.6)]" : "";
+    const ServerIcon = isWebSocket ? Zap : Wifi;
     
     // Shared flow diagram component
     const FlowDiagram = () => (
@@ -216,15 +216,15 @@ const HeroSection = () => {
         
         {/* Animated dots */}
         <div
-          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`}
           style={{ animation: "flow-qr-to-server 2s ease-in-out infinite" }}
         />
         <div
-          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`}
           style={{ animation: "flow-server-to-cashier 2s ease-in-out infinite", animationDelay: "0.4s" }}
         />
         <div
-          className={`absolute w-1.5 h-1.5 rounded-full ${config.dotColor}`}
+          className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`}
           style={{ animation: "flow-server-to-kitchen 2s ease-in-out infinite", animationDelay: "0.8s" }}
         />
         
@@ -236,17 +236,17 @@ const HeroSection = () => {
           <span className="text-[8px] text-muted-foreground font-medium">QR</span>
         </div>
         
-        {/* Server Node */}
+        {/* Server Node - distinct styling per protocol */}
         <div className="absolute left-[45%] top-1/2 -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
-          <div className={`w-6 h-6 rounded-full ${config.nodeColor} flex items-center justify-center mb-1 animate-pulse`}>
-            <Wifi className="w-3.5 h-3.5 text-white" />
+          <div className={`w-6 h-6 rounded-full ${serverColor} flex items-center justify-center mb-1 animate-pulse ${glowClass}`}>
+            <ServerIcon className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-[8px] text-muted-foreground font-medium">Server</span>
         </div>
         
         {/* Cashier Node */}
         <div className="absolute right-0 top-[20%] -translate-y-1/2 flex flex-col items-center">
-          <div className="w-6 h-6 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse">
+          <div className={`w-6 h-6 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse ${isWebSocket ? glowClass : ""}`}>
             <CreditCard className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-[8px] text-muted-foreground font-medium">Cashier</span>
@@ -254,7 +254,7 @@ const HeroSection = () => {
         
         {/* Kitchen Node */}
         <div className="absolute right-0 top-[80%] -translate-y-1/2 flex flex-col items-center">
-          <div className="w-6 h-6 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse">
+          <div className={`w-6 h-6 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse ${isWebSocket ? glowClass : ""}`}>
             <ChefHat className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-[8px] text-muted-foreground font-medium">Kitchen</span>
