@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich, CreditCard, ChefHat, BarChart3, Wifi, Globe, Check, Clock, Flame, DollarSign, Users, Receipt, TrendingUp, Settings, QrCode, LayoutGrid } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
@@ -10,6 +10,18 @@ const HeroSection = () => {
   const { t } = useLanguage();
   const [demoModalOpen, setDemoModalOpen] = useState(false);
   const [activeView, setActiveView] = useState<MockupView>("summary");
+  const [chartAnimationKey, setChartAnimationKey] = useState(0);
+
+  // Reset chart animation every 3 seconds when admin tab is active
+  useEffect(() => {
+    if (activeView !== "admin") return;
+    
+    const interval = setInterval(() => {
+      setChartAnimationKey(prev => prev + 1);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [activeView]);
 
   const stats = [
     { value: "1,000+", label: t.hero.stats.restaurants },
@@ -189,7 +201,7 @@ const HeroSection = () => {
           </div>
           <div className="flex items-end justify-between gap-1 h-16">
             {chartBars.map((bar, i) => (
-              <div key={i} className="flex flex-col items-center flex-1 h-full">
+              <div key={`${chartAnimationKey}-${i}`} className="flex flex-col items-center flex-1 h-full">
                 <div className="flex-1 w-full flex items-end">
                   <div 
                     className={`w-full ${bar.color} rounded-t-sm`}
