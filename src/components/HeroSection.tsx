@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich, CreditCard, ChefHat, BarChart3, Wifi, Globe, Check, Clock, Flame, DollarSign, Users, Receipt, TrendingUp } from "lucide-react";
+import { ArrowRight, Play, Sparkles, Zap, Shield, Pizza, Coffee, Salad, Sandwich, CreditCard, ChefHat, BarChart3, Wifi, Globe, Check, Clock, Flame, DollarSign, Users, Receipt, TrendingUp, Settings, QrCode, LayoutGrid } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import DemoRequestModal from "./DemoRequestModal";
 
-type MockupView = "summary" | "qr" | "cashier" | "kitchen";
+type MockupView = "summary" | "qr" | "cashier" | "kitchen" | "admin";
 
 const HeroSection = () => {
   const { t } = useLanguage();
@@ -23,6 +23,7 @@ const HeroSection = () => {
     { id: "qr" as const, label: "QR Order", icon: Pizza },
     { id: "cashier" as const, label: "Cashier", icon: CreditCard },
     { id: "kitchen" as const, label: "Kitchen", icon: ChefHat },
+    { id: "admin" as const, label: "Admin", icon: Settings },
   ];
 
   // QR Order View (existing)
@@ -157,6 +158,69 @@ const HeroSection = () => {
     </div>
   );
 
+  // Admin Dashboard View
+  const AdminView = () => {
+    // Animated bar chart data
+    const chartBars = [
+      { height: 45, label: "Mon", color: "bg-primary" },
+      { height: 72, label: "Tue", color: "bg-mint" },
+      { height: 58, label: "Wed", color: "bg-coral" },
+      { height: 85, label: "Thu", color: "bg-primary" },
+      { height: 65, label: "Fri", color: "bg-mint" },
+      { height: 90, label: "Sat", color: "bg-coral" },
+      { height: 78, label: "Sun", color: "bg-primary" },
+    ];
+
+    const managementItems = [
+      { icon: Users, label: "Users", count: 156, color: "bg-primary" },
+      { icon: QrCode, label: "QR Codes", count: 24, color: "bg-mint" },
+      { icon: LayoutGrid, label: "Categories", count: 12, color: "bg-coral" },
+    ];
+
+    return (
+      <div className="h-full p-3 sm:p-4">
+        <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Admin Dashboard</div>
+        
+        {/* Animated Graph */}
+        <div className="mb-4 p-2 rounded-xl bg-muted/30">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-[9px] text-muted-foreground font-medium">Weekly Orders</span>
+            <TrendingUp className="w-3 h-3 text-mint" />
+          </div>
+          <div className="flex items-end justify-between gap-1 h-16">
+            {chartBars.map((bar, i) => (
+              <div key={i} className="flex flex-col items-center flex-1">
+                <div 
+                  className={`w-full ${bar.color} rounded-t-sm animate-chart-bar`}
+                  style={{ 
+                    height: `${bar.height}%`,
+                    animationDelay: `${i * 0.1}s`
+                  }}
+                />
+                <span className="text-[6px] text-muted-foreground mt-1">{bar.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Management Cards */}
+        <div className="grid grid-cols-3 gap-2">
+          {managementItems.map((item, i) => (
+            <div key={i} className="p-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors cursor-pointer group">
+              <div className={`w-6 h-6 mx-auto rounded-lg ${item.color} flex items-center justify-center mb-1 group-hover:scale-110 transition-transform`}>
+                <item.icon className="w-3.5 h-3.5 text-white" />
+              </div>
+              <div className="text-center">
+                <div className="text-sm font-bold text-foreground">{item.count}</div>
+                <div className="text-[8px] text-muted-foreground">{item.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
   // Summary/Realtime View
   const SummaryView = () => {
     const [selectedProtocol, setSelectedProtocol] = useState<"websocket" | "https">("websocket");
@@ -195,7 +259,7 @@ const HeroSection = () => {
           <line
             x1="52%"
             y1="48"
-            x2="78%"
+            x2="68%"
             y2="22"
             stroke="hsl(var(--muted-foreground))"
             strokeWidth="1.5"
@@ -206,8 +270,30 @@ const HeroSection = () => {
           <line
             x1="52%"
             y1="48"
-            x2="78%"
+            x2="68%"
             y2="74"
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="1.5"
+            markerEnd="url(#arrowRight)"
+          />
+
+          {/* Cashier → Admin */}
+          <line
+            x1="78%"
+            y1="22"
+            x2="92%"
+            y2="48"
+            stroke="hsl(var(--muted-foreground))"
+            strokeWidth="1.5"
+            markerEnd="url(#arrowRight)"
+          />
+
+          {/* Kitchen → Admin */}
+          <line
+            x1="78%"
+            y1="74"
+            x2="92%"
+            y2="48"
             stroke="hsl(var(--muted-foreground))"
             strokeWidth="1.5"
             markerEnd="url(#arrowRight)"
@@ -227,6 +313,14 @@ const HeroSection = () => {
           className={`absolute w-1.5 h-1.5 rounded-full ${dotColor}`}
           style={{ animation: "flow-server-to-kitchen 2s ease-in-out infinite", animationDelay: "0.8s" }}
         />
+        <div
+          className={`absolute w-1.5 h-1.5 rounded-full bg-purple-400`}
+          style={{ animation: "flow-cashier-to-admin 2s ease-in-out infinite", animationDelay: "1.2s" }}
+        />
+        <div
+          className={`absolute w-1.5 h-1.5 rounded-full bg-purple-400`}
+          style={{ animation: "flow-kitchen-to-admin 2s ease-in-out infinite", animationDelay: "1.6s" }}
+        />
         
         {/* QR Node */}
         <div className="absolute left-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
@@ -245,7 +339,7 @@ const HeroSection = () => {
         </div>
         
         {/* Cashier Node */}
-        <div className="absolute right-0 top-[20%] -translate-y-1/2 flex flex-col items-center">
+        <div className="absolute right-[25%] top-[20%] -translate-y-1/2 flex flex-col items-center">
           <div className={`w-6 h-6 rounded-full bg-navy flex items-center justify-center mb-1 animate-pulse ${isWebSocket ? glowClass : ""}`}>
             <CreditCard className="w-3.5 h-3.5 text-white" />
           </div>
@@ -253,11 +347,19 @@ const HeroSection = () => {
         </div>
         
         {/* Kitchen Node */}
-        <div className="absolute right-0 top-[80%] -translate-y-1/2 flex flex-col items-center">
+        <div className="absolute right-[25%] top-[80%] -translate-y-1/2 flex flex-col items-center">
           <div className={`w-6 h-6 rounded-full bg-coral flex items-center justify-center mb-1 animate-pulse ${isWebSocket ? glowClass : ""}`}>
             <ChefHat className="w-3.5 h-3.5 text-white" />
           </div>
           <span className="text-[8px] text-muted-foreground font-medium">Kitchen</span>
+        </div>
+
+        {/* Admin Node */}
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 flex flex-col items-center">
+          <div className={`w-6 h-6 rounded-full bg-purple-500 flex items-center justify-center mb-1 animate-pulse ${isWebSocket ? glowClass : ""}`}>
+            <Settings className="w-3.5 h-3.5 text-white" />
+          </div>
+          <span className="text-[8px] text-muted-foreground font-medium">Admin</span>
         </div>
       </div>
     );
@@ -401,6 +503,37 @@ const HeroSection = () => {
       );
     }
 
+    if (activeView === "admin") {
+      return (
+        <div className="p-3">
+          <div className="text-[10px] font-bold text-foreground mb-3">Management</div>
+          <div className="space-y-2">
+            <div className="p-2 rounded-lg bg-primary/10 flex items-center gap-2">
+              <Users className="w-4 h-4 text-primary" />
+              <div className="flex-1">
+                <span className="text-[9px] text-foreground font-medium">Users</span>
+                <div className="text-[8px] text-muted-foreground">156 active</div>
+              </div>
+            </div>
+            <div className="p-2 rounded-lg bg-mint/10 flex items-center gap-2">
+              <QrCode className="w-4 h-4 text-mint" />
+              <div className="flex-1">
+                <span className="text-[9px] text-foreground font-medium">QR Codes</span>
+                <div className="text-[8px] text-muted-foreground">24 tables</div>
+              </div>
+            </div>
+            <div className="p-2 rounded-lg bg-coral/10 flex items-center gap-2">
+              <LayoutGrid className="w-4 h-4 text-coral" />
+              <div className="flex-1">
+                <span className="text-[9px] text-foreground font-medium">Categories</span>
+                <div className="text-[8px] text-muted-foreground">12 items</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     // Default QR Order view
     return (
       <div className="p-3">
@@ -433,6 +566,7 @@ const HeroSection = () => {
       case "cashier": return <CashierView />;
       case "kitchen": return <KitchenView />;
       case "summary": return <SummaryView />;
+      case "admin": return <AdminView />;
       default: return <QROrderView />;
     }
   };

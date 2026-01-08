@@ -33,6 +33,33 @@
   90% { opacity: 1; }
   100% { left: 52%; top: 46px; opacity: 0; }
 }
+
+/* Cashier to Admin */
+@keyframes flow-cashier-to-admin {
+  0% { left: 78%; top: 22px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 92%; top: 48px; opacity: 0; }
+}
+
+/* Kitchen to Admin */
+@keyframes flow-kitchen-to-admin {
+  0% { left: 78%; top: 74px; opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { left: 92%; top: 48px; opacity: 0; }
+}
+
+/* Chart bar animation */
+@keyframes chart-bar-grow {
+  0% { transform: scaleY(0); }
+  100% { transform: scaleY(1); }
+}
+
+.animate-chart-bar {
+  animation: chart-bar-grow 0.8s ease-out forwards;
+  transform-origin: bottom;
+}
 @tailwind components;
 @tailwind utilities;
 
