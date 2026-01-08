@@ -189,14 +189,18 @@ const HeroSection = () => {
           </div>
           <div className="flex items-end justify-between gap-1 h-16">
             {chartBars.map((bar, i) => (
-              <div key={i} className="flex flex-col items-center flex-1">
-                <div 
-                  className={`w-full ${bar.color} rounded-t-sm animate-chart-bar`}
-                  style={{ 
-                    height: `${bar.height}%`,
-                    animationDelay: `${i * 0.1}s`
-                  }}
-                />
+              <div key={i} className="flex flex-col items-center flex-1 h-full">
+                <div className="flex-1 w-full flex items-end">
+                  <div 
+                    className={`w-full ${bar.color} rounded-t-sm`}
+                    style={{ 
+                      height: `${bar.height}%`,
+                      animation: `chart-bar-grow 0.8s ease-out ${i * 0.1}s forwards, chart-bar-pulse 2s ease-in-out ${0.8 + i * 0.1}s infinite`,
+                      transformOrigin: 'bottom',
+                      transform: 'scaleY(0)'
+                    }}
+                  />
+                </div>
                 <span className="text-[6px] text-muted-foreground mt-1">{bar.label}</span>
               </div>
             ))}
