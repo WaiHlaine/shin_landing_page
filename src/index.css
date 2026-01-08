@@ -120,6 +120,7 @@
     --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(var(--cream)) 100%);
     --gradient-teal: linear-gradient(135deg, hsl(var(--teal)) 0%, hsl(var(--teal-light)) 100%);
     --gradient-accent: linear-gradient(135deg, hsl(var(--teal)) 0%, hsl(var(--coral)) 100%);
+    --gradient-navy: linear-gradient(135deg, hsl(var(--navy)) 0%, hsl(var(--teal-dark)) 55%, hsl(var(--navy)) 100%);
 
     /* Shadows with teal tint */
     --shadow-sm: 0 2px 8px -2px hsl(var(--teal) / 0.1);
@@ -204,6 +205,10 @@
 
   .bg-gradient-teal {
     background: var(--gradient-teal);
+  }
+
+  .bg-gradient-navy {
+    background: var(--gradient-navy);
   }
 
   .shadow-glow {
