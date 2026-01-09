@@ -21,52 +21,54 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-12 h-12 relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
-                {/* Circle outline */}
+            <div className="w-11 h-11 relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
+                {/* Shop bag (top) */}
+                <path
+                  d="M14 16h12a2 2 0 012 2v10a3 3 0 01-3 3H15a3 3 0 01-3-3V18a2 2 0 012-2z"
+                  fill="hsl(var(--primary))"
+                  opacity="0.9"
+                />
+                {/* Bag handle */}
+                <path
+                  d="M17 16v-2a3 3 0 013-3h0a3 3 0 013 3v2"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  fill="none"
+                />
+                {/* Gear/cog (bottom, overlapping) */}
                 <circle
                   cx="32"
                   cy="32"
-                  r="29"
-                  stroke="hsl(200, 70%, 55%)"
+                  r="8"
+                  fill="hsl(var(--teal))"
+                />
+                <circle
+                  cx="32"
+                  cy="32"
+                  r="3"
+                  fill="hsl(var(--background))"
+                />
+                {/* Gear teeth */}
+                <g fill="hsl(var(--teal))">
+                  <rect x="30.5" y="22" width="3" height="4" rx="1" />
+                  <rect x="30.5" y="38" width="3" height="4" rx="1" />
+                  <rect x="22" y="30.5" width="4" height="3" rx="1" />
+                  <rect x="38" y="30.5" width="4" height="3" rx="1" />
+                  <rect x="24" y="24" width="3" height="3" rx="1" transform="rotate(45 25.5 25.5)" />
+                  <rect x="37" y="37" width="3" height="3" rx="1" transform="rotate(45 38.5 38.5)" />
+                  <rect x="37" y="24" width="3" height="3" rx="1" transform="rotate(45 38.5 25.5)" />
+                  <rect x="24" y="37" width="3" height="3" rx="1" transform="rotate(45 25.5 38.5)" />
+                </g>
+                {/* Connection line (S flow) */}
+                <path
+                  d="M20 28c0 4 8 4 12 8"
+                  stroke="hsl(var(--coral))"
                   strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeDasharray="3 2"
                   fill="none"
-                />
-                {/* S letter - bold blue */}
-                <text
-                  x="32"
-                  y="46"
-                  textAnchor="middle"
-                  fontSize="42"
-                  fontWeight="bold"
-                  fontFamily="Arial, sans-serif"
-                  fill="hsl(200, 70%, 55%)"
-                >
-                  S
-                </text>
-                {/* Red dotted line connecting diamonds */}
-                <line
-                  x1="32"
-                  y1="20"
-                  x2="32"
-                  y2="46"
-                  stroke="hsl(0, 75%, 50%)"
-                  strokeWidth="2.5"
-                  strokeDasharray="4 3"
-                />
-                {/* Top diamond (Shop) */}
-                <polygon
-                  points="32,14 38,20 32,26 26,20"
-                  fill="hsl(50, 100%, 50%)"
-                  stroke="hsl(45, 90%, 45%)"
-                  strokeWidth="1"
-                />
-                {/* Bottom diamond (System) */}
-                <polygon
-                  points="32,40 38,46 32,52 26,46"
-                  fill="hsl(50, 100%, 50%)"
-                  stroke="hsl(45, 90%, 45%)"
-                  strokeWidth="1"
                 />
               </svg>
             </div>
