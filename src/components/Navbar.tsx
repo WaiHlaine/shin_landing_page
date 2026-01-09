@@ -21,47 +21,52 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-11 h-11 rounded-full border-2 border-primary/60 flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300 bg-background">
-              <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
-                {/* S letter */}
-                <path
-                  d="M30 14C30 14 27 9 22 9C16 9 12 13 12 17C12 21 16 23.5 22 25.5C28 27.5 34 30 34 35C34 40 28 43 22 43C16 43 13 38 13 38"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="5"
-                  strokeLinecap="round"
+            <div className="w-12 h-12 relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+                {/* Circle outline */}
+                <circle
+                  cx="32"
+                  cy="32"
+                  r="29"
+                  stroke="hsl(200, 70%, 55%)"
+                  strokeWidth="2"
                   fill="none"
                 />
-                {/* Dotted line connecting icons */}
+                {/* S letter - bold blue */}
+                <text
+                  x="32"
+                  y="46"
+                  textAnchor="middle"
+                  fontSize="42"
+                  fontWeight="bold"
+                  fontFamily="Arial, sans-serif"
+                  fill="hsl(200, 70%, 55%)"
+                >
+                  S
+                </text>
+                {/* Red dotted line connecting diamonds */}
                 <line
-                  x1="22"
-                  y1="17"
-                  x2="22"
-                  y2="35"
-                  stroke="hsl(var(--destructive))"
-                  strokeWidth="2"
-                  strokeDasharray="3 3"
+                  x1="32"
+                  y1="20"
+                  x2="32"
+                  y2="46"
+                  stroke="hsl(0, 75%, 50%)"
+                  strokeWidth="2.5"
+                  strokeDasharray="4 3"
                 />
                 {/* Top diamond (Shop) */}
-                <rect
-                  x="18.5"
-                  y="13.5"
-                  width="7"
-                  height="7"
-                  fill="hsl(45, 100%, 50%)"
-                  stroke="hsl(40, 100%, 40%)"
-                  strokeWidth="0.5"
-                  transform="rotate(45 22 17)"
+                <polygon
+                  points="32,14 38,20 32,26 26,20"
+                  fill="hsl(50, 100%, 50%)"
+                  stroke="hsl(45, 90%, 45%)"
+                  strokeWidth="1"
                 />
                 {/* Bottom diamond (System) */}
-                <rect
-                  x="18.5"
-                  y="31.5"
-                  width="7"
-                  height="7"
-                  fill="hsl(45, 100%, 50%)"
-                  stroke="hsl(40, 100%, 40%)"
-                  strokeWidth="0.5"
-                  transform="rotate(45 22 35)"
+                <polygon
+                  points="32,40 38,46 32,52 26,46"
+                  fill="hsl(50, 100%, 50%)"
+                  stroke="hsl(45, 90%, 45%)"
+                  strokeWidth="1"
                 />
               </svg>
             </div>
