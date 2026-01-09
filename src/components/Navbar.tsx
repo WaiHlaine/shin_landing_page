@@ -21,43 +21,47 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
-              <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+            <div className="w-11 h-11 rounded-full border-2 border-primary/60 flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300 bg-background">
+              <svg width="32" height="32" viewBox="0 0 48 48" fill="none">
                 {/* S letter */}
                 <path
-                  d="M26 13C26 13 23.5 9 20 9C16 9 13 11.5 13 14.5C13 17.5 16 19 20 20.5C24 22 27 24 27 27.5C27 31 23.5 33 20 33C16 33 14 29 14 29"
+                  d="M30 14C30 14 27 9 22 9C16 9 12 13 12 17C12 21 16 23.5 22 25.5C28 27.5 34 30 34 35C34 40 28 43 22 43C16 43 13 38 13 38"
                   stroke="hsl(var(--primary))"
-                  strokeWidth="4"
+                  strokeWidth="5"
                   strokeLinecap="round"
                   fill="none"
                 />
-                {/* Dotted line connecting diamonds */}
+                {/* Dotted line connecting icons */}
                 <line
-                  x1="20"
-                  y1="14"
-                  x2="20"
-                  y2="28"
+                  x1="22"
+                  y1="17"
+                  x2="22"
+                  y2="35"
                   stroke="hsl(var(--destructive))"
-                  strokeWidth="1.5"
-                  strokeDasharray="2 2"
+                  strokeWidth="2"
+                  strokeDasharray="3 3"
                 />
-                {/* Top diamond */}
+                {/* Top diamond (Shop) */}
                 <rect
-                  x="17"
-                  y="11"
-                  width="6"
-                  height="6"
+                  x="18.5"
+                  y="13.5"
+                  width="7"
+                  height="7"
                   fill="hsl(45, 100%, 50%)"
-                  transform="rotate(45 20 14)"
+                  stroke="hsl(40, 100%, 40%)"
+                  strokeWidth="0.5"
+                  transform="rotate(45 22 17)"
                 />
-                {/* Bottom diamond */}
+                {/* Bottom diamond (System) */}
                 <rect
-                  x="17"
-                  y="25"
-                  width="6"
-                  height="6"
+                  x="18.5"
+                  y="31.5"
+                  width="7"
+                  height="7"
                   fill="hsl(45, 100%, 50%)"
-                  transform="rotate(45 20 28)"
+                  stroke="hsl(40, 100%, 40%)"
+                  strokeWidth="0.5"
+                  transform="rotate(45 22 35)"
                 />
               </svg>
             </div>
