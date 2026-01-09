@@ -21,15 +21,43 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-10 h-10 rounded-xl bg-gradient-hero flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-primary-foreground">
-                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" opacity="0.9" />
+            <div className="w-10 h-10 rounded-full bg-background border-2 border-primary flex items-center justify-center shadow-md group-hover:shadow-glow transition-shadow duration-300">
+              <svg width="28" height="28" viewBox="0 0 40 40" fill="none">
+                {/* S letter */}
                 <path
-                  d="M16 8C16 8 14.5 6.5 12 6.5C9.5 6.5 8 8 8 9.5C8 11 9.5 11.8 12 12.5C14.5 13.2 16 14 16 15.5C16 17 14.5 18.5 12 18.5C9.5 18.5 8 17 8 17"
-                  stroke="currentColor"
-                  strokeWidth="2.4"
+                  d="M26 13C26 13 23.5 9 20 9C16 9 13 11.5 13 14.5C13 17.5 16 19 20 20.5C24 22 27 24 27 27.5C27 31 23.5 33 20 33C16 33 14 29 14 29"
+                  stroke="hsl(var(--primary))"
+                  strokeWidth="4"
                   strokeLinecap="round"
                   fill="none"
+                />
+                {/* Dotted line connecting diamonds */}
+                <line
+                  x1="20"
+                  y1="14"
+                  x2="20"
+                  y2="28"
+                  stroke="hsl(var(--destructive))"
+                  strokeWidth="1.5"
+                  strokeDasharray="2 2"
+                />
+                {/* Top diamond */}
+                <rect
+                  x="17"
+                  y="11"
+                  width="6"
+                  height="6"
+                  fill="hsl(45, 100%, 50%)"
+                  transform="rotate(45 20 14)"
+                />
+                {/* Bottom diamond */}
+                <rect
+                  x="17"
+                  y="25"
+                  width="6"
+                  height="6"
+                  fill="hsl(45, 100%, 50%)"
+                  transform="rotate(45 20 28)"
                 />
               </svg>
             </div>
