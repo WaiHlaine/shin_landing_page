@@ -52,9 +52,9 @@ const Footer = () => {
                   <defs>
                     <path id="footerTextCircle" d="M 30,30 m -22,0 a 22,22 0 1,1 44,0 a 22,22 0 1,1 -44,0" fill="none" />
                   </defs>
-                  <text className="fill-primary-foreground/70 text-[8px] font-bold tracking-[0.3em] uppercase">
+                  <text className="fill-primary-foreground/70 text-[8px] font-bold tracking-[0.25em] uppercase">
                     <textPath href="#footerTextCircle" startOffset="0%">
-                      SHIN • SHIN • SHIN • SHIN • SHIN •
+                      SHIN • SHIN • SHIN • SHIN •
                     </textPath>
                   </text>
                 </svg>
