@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Menu, X, Store, Cpu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import LanguageSwitcher from "./LanguageSwitcher";
 
@@ -33,7 +33,7 @@ const Navbar = () => {
                 </defs>
                 <text className="fill-primary text-[8px] font-bold tracking-[0.3em] uppercase">
                   <textPath href="#textCircle" startOffset="0%">
-                    SHION • SHION • SHION • SHION •
+                    SHIN • SHIN • SHIN • SHIN • SHIN •
                   </textPath>
                 </text>
               </svg>
@@ -49,14 +49,6 @@ const Navbar = () => {
                   className="text-primary"
                 />
               </svg>
-            </div>
-            <div className="flex flex-col leading-none">
-              <span className="text-xl font-bold text-foreground">Shin</span>
-              <div className="mt-0.5 flex items-center gap-1.5 text-muted-foreground">
-                <Store className="w-3 h-3" aria-label="Shop" />
-                <span className="h-px w-5 bg-border" aria-hidden />
-                <Cpu className="w-3 h-3" aria-label="System" />
-              </div>
             </div>
           </a>
 
