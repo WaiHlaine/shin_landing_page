@@ -1,4 +1,4 @@
-import { Facebook, Twitter, Instagram, Linkedin, Store, Cpu } from "lucide-react";
+import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
@@ -46,25 +46,30 @@ const Footer = () => {
           {/* Brand Column */}
           <div className="lg:col-span-2">
             <a href="#" className="flex items-center gap-2 mb-4">
-              <div className="w-10 h-10 rounded-xl bg-primary-foreground/10 flex items-center justify-center">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-primary-foreground">
-                  <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" opacity="0.9" />
+              <div className="relative w-12 h-12">
+                {/* Rotating SHIN text */}
+                <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 60 60">
+                  <defs>
+                    <path id="footerTextCircle" d="M 30,30 m -22,0 a 22,22 0 1,1 44,0 a 22,22 0 1,1 -44,0" fill="none" />
+                  </defs>
+                  <text className="fill-primary-foreground/70 text-[8px] font-bold tracking-[0.3em] uppercase">
+                    <textPath href="#footerTextCircle" startOffset="0%">
+                      SHIN • SHIN • SHIN • SHIN • SHIN •
+                    </textPath>
+                  </text>
+                </svg>
+                {/* S Logo */}
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 60 60" fill="none">
+                  <circle cx="30" cy="30" r="18" stroke="currentColor" strokeWidth="1.8" opacity="0.9" className="text-primary-foreground" />
                   <path
-                    d="M16 8C16 8 14.5 6.5 12 6.5C9.5 6.5 8 8 8 9.5C8 11 9.5 11.8 12 12.5C14.5 13.2 16 14 16 15.5C16 17 14.5 18.5 12 18.5C9.5 18.5 8 17 8 17"
+                    d="M38 22C38 22 35 19 30 19C25 19 22 22 22 25C22 28 25 29.5 30 31C35 32.5 38 34 38 37C38 40 35 43 30 43C25 43 22 40 22 40"
                     stroke="currentColor"
                     strokeWidth="2.4"
                     strokeLinecap="round"
                     fill="none"
+                    className="text-primary-foreground"
                   />
                 </svg>
-              </div>
-              <div className="flex flex-col leading-none">
-                <span className="text-xl font-bold text-primary-foreground">Shin</span>
-                <div className="mt-0.5 flex items-center gap-1.5 text-primary-foreground/70">
-                  <Store className="w-3 h-3" aria-label="Shop" />
-                  <span className="h-px w-5 bg-primary-foreground/20" aria-hidden />
-                  <Cpu className="w-3 h-3" aria-label="System" />
-                </div>
               </div>
             </a>
             <p className="text-primary-foreground/70 text-sm mb-6 max-w-xs">
