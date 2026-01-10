@@ -21,54 +21,32 @@ const Navbar = () => {
         <div className="flex items-center justify-between h-16 lg:h-20">
           {/* Logo */}
           <a href="#" className="flex items-center gap-2 group">
-            <div className="w-11 h-11 relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
-              <svg width="44" height="44" viewBox="0 0 48 48" fill="none">
-                {/* Shop bag (top) */}
+            <div className="w-14 h-14 relative flex items-center justify-center group-hover:scale-105 transition-transform duration-300">
+              {/* Rotating SHION text */}
+              <svg className="absolute inset-0 w-full h-full animate-spin-slow" viewBox="0 0 56 56">
+                <defs>
+                  <path
+                    id="textCircle"
+                    d="M 28,28 m -22,0 a 22,22 0 1,1 44,0 a 22,22 0 1,1 -44,0"
+                    fill="none"
+                  />
+                </defs>
+                <text className="fill-primary text-[8px] font-bold tracking-[0.3em] uppercase">
+                  <textPath href="#textCircle" startOffset="0%">
+                    SHION • SHION • SHION • SHION •
+                  </textPath>
+                </text>
+              </svg>
+              {/* Center logo */}
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="relative z-10">
+                <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.8" opacity="0.9" className="text-primary" />
                 <path
-                  d="M14 16h12a2 2 0 012 2v10a3 3 0 01-3 3H15a3 3 0 01-3-3V18a2 2 0 012-2z"
-                  fill="hsl(var(--primary))"
-                  opacity="0.9"
-                />
-                {/* Bag handle */}
-                <path
-                  d="M17 16v-2a3 3 0 013-3h0a3 3 0 013 3v2"
-                  stroke="hsl(var(--primary))"
-                  strokeWidth="2"
+                  d="M16 8C16 8 14.5 6.5 12 6.5C9.5 6.5 8 8 8 9.5C8 11 9.5 11.8 12 12.5C14.5 13.2 16 14 16 15.5C16 17 14.5 18.5 12 18.5C9.5 18.5 8 17 8 17"
+                  stroke="currentColor"
+                  strokeWidth="2.4"
                   strokeLinecap="round"
                   fill="none"
-                />
-                {/* Gear/cog (bottom, overlapping) */}
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="8"
-                  fill="hsl(var(--teal))"
-                />
-                <circle
-                  cx="32"
-                  cy="32"
-                  r="3"
-                  fill="hsl(var(--background))"
-                />
-                {/* Gear teeth */}
-                <g fill="hsl(var(--teal))">
-                  <rect x="30.5" y="22" width="3" height="4" rx="1" />
-                  <rect x="30.5" y="38" width="3" height="4" rx="1" />
-                  <rect x="22" y="30.5" width="4" height="3" rx="1" />
-                  <rect x="38" y="30.5" width="4" height="3" rx="1" />
-                  <rect x="24" y="24" width="3" height="3" rx="1" transform="rotate(45 25.5 25.5)" />
-                  <rect x="37" y="37" width="3" height="3" rx="1" transform="rotate(45 38.5 38.5)" />
-                  <rect x="37" y="24" width="3" height="3" rx="1" transform="rotate(45 38.5 25.5)" />
-                  <rect x="24" y="37" width="3" height="3" rx="1" transform="rotate(45 25.5 38.5)" />
-                </g>
-                {/* Connection line (S flow) */}
-                <path
-                  d="M20 28c0 4 8 4 12 8"
-                  stroke="hsl(var(--coral))"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeDasharray="3 2"
-                  fill="none"
+                  className="text-primary"
                 />
               </svg>
             </div>
