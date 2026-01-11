@@ -31,9 +31,9 @@ const Navbar = () => {
                     fill="none"
                   />
                 </defs>
-                <text className="fill-primary text-[8px] font-bold tracking-[0.25em] uppercase">
+                <text className="fill-primary text-[8px] font-bold tracking-[0.35em] uppercase">
                   <textPath href="#textCircle" startOffset="0%">
-                    SHIN • SHIN • SHIN • SHIN •
+                    SHIN • SHIN • SHIN •
                   </textPath>
                 </text>
               </svg>
