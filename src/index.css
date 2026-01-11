@@ -276,6 +276,10 @@
   animation: spin 12s linear infinite;
 }
 
+.group:hover .animate-spin-slow {
+  animation-play-state: paused;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
