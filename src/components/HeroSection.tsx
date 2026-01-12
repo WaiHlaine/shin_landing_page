@@ -190,16 +190,16 @@ const HeroSection = () => {
     ];
 
     return (
-      <div className="h-full p-3 sm:p-4">
-        <div className="text-xs sm:text-sm font-bold text-foreground mb-3">Admin Dashboard</div>
+      <div className="h-full p-2 sm:p-4">
+        <div className="text-xs sm:text-sm font-bold text-foreground mb-2 sm:mb-3">Admin Dashboard</div>
         
         {/* Animated Graph */}
-        <div className="mb-4 p-2 rounded-xl bg-muted/30">
-          <div className="flex items-center justify-between mb-2">
+        <div className="mb-2 sm:mb-4 p-2 rounded-xl bg-muted/30">
+          <div className="flex items-center justify-between mb-1 sm:mb-2">
             <span className="text-[9px] text-muted-foreground font-medium">Weekly Orders</span>
             <TrendingUp className="w-3 h-3 text-mint" />
           </div>
-          <div className="flex items-end justify-between gap-1 h-16">
+          <div className="flex items-end justify-between gap-1 h-12 sm:h-16">
             {chartBars.map((bar, i) => (
               <div key={`${chartAnimationKey}-${i}`} className="flex flex-col items-center flex-1 h-full">
                 <div className="flex-1 w-full flex items-end">
@@ -222,13 +222,13 @@ const HeroSection = () => {
         {/* Management Cards */}
         <div className="grid grid-cols-3 gap-2">
           {managementItems.map((item, i) => (
-            <div key={i} className="p-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors cursor-pointer group">
-              <div className={`w-6 h-6 mx-auto rounded-lg ${item.color} flex items-center justify-center mb-1 group-hover:scale-110 transition-transform`}>
-                <item.icon className="w-3.5 h-3.5 text-white" />
+            <div key={i} className="p-1.5 sm:p-2 rounded-xl bg-muted/50 hover:bg-muted transition-colors cursor-pointer group">
+              <div className={`w-5 h-5 sm:w-6 sm:h-6 mx-auto rounded-lg ${item.color} flex items-center justify-center mb-0.5 sm:mb-1 group-hover:scale-110 transition-transform`}>
+                <item.icon className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white" />
               </div>
               <div className="text-center">
-                <div className="text-sm font-bold text-foreground">{item.count}</div>
-                <div className="text-[8px] text-muted-foreground">{item.label}</div>
+                <div className="text-xs sm:text-sm font-bold text-foreground">{item.count}</div>
+                <div className="text-[7px] sm:text-[8px] text-muted-foreground">{item.label}</div>
               </div>
             </div>
           ))}
@@ -651,7 +651,7 @@ const HeroSection = () => {
           {/* Device Mockups */}
           <div className="flex items-end justify-center gap-4 lg:gap-8 mb-10 animate-fade-up" style={{ animationDelay: "0.25s" }}>
             {/* Tablet Mockup */}
-            <div className="relative w-72 sm:w-96 lg:w-[28rem] h-56 sm:h-72 lg:h-80 bg-foreground rounded-3xl p-3 shadow-2xl">
+            <div className="relative w-72 sm:w-96 lg:w-[28rem] h-64 sm:h-72 lg:h-80 bg-foreground rounded-3xl p-3 shadow-2xl">
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-2 bg-muted-foreground/30 rounded-full" />
               <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
                 {renderTabletView()}
