@@ -381,11 +381,11 @@ const HeroSection = () => {
     );
     
     return (
-      <div className="h-full p-3 sm:p-4">
+      <div className="h-full p-2 sm:p-4">
         <div className="text-xs sm:text-sm font-bold text-foreground mb-2">Realtime Flow</div>
         
         {/* Protocol selector */}
-        <div className="flex items-center gap-2 mb-4">
+        <div className="flex items-center gap-2 mb-2 sm:mb-4">
           <button 
             onClick={() => setSelectedProtocol("websocket")}
             className={`flex items-center gap-1.5 px-2 py-1 rounded-full transition-all ${
@@ -415,21 +415,19 @@ const HeroSection = () => {
 
         {/* Live stats */}
         <div className="grid grid-cols-2 gap-2">
-          <div className="p-2 rounded-lg bg-mint/10">
-            <div className="flex items-center gap-1 mb-1">
+          <div className="p-1.5 sm:p-2 rounded-lg bg-mint/10">
+            <div className="flex items-center gap-1">
               <TrendingUp className="w-3 h-3 text-mint" />
               <span className="text-[9px] text-mint font-medium">Live Orders</span>
             </div>
-            <div className="text-sm font-bold text-foreground">24</div>
-            <div className="text-[8px] text-muted-foreground">+3 in queue</div>
+            <div className="text-xs sm:text-sm font-bold text-foreground">24</div>
           </div>
-          <div className="p-2 rounded-lg bg-primary/10">
-            <div className="flex items-center gap-1 mb-1">
+          <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
+            <div className="flex items-center gap-1">
               <BarChart3 className="w-3 h-3 text-primary" />
               <span className="text-[9px] text-primary font-medium">Revenue</span>
             </div>
-            <div className="text-sm font-bold text-foreground">$1,284</div>
-            <div className="text-[8px] text-muted-foreground">Today</div>
+            <div className="text-xs sm:text-sm font-bold text-foreground">$1,284</div>
           </div>
         </div>
       </div>
