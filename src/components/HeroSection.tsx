@@ -420,14 +420,20 @@ const HeroSection = () => {
               <TrendingUp className="w-3 h-3 text-mint" />
               <span className="text-[9px] text-mint font-medium">Live Orders</span>
             </div>
-            <div className="text-xs sm:text-sm font-bold text-foreground">24</div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-xs sm:text-sm font-bold text-foreground">24</span>
+              <span className="text-[7px] sm:text-[8px] text-muted-foreground">+3 in queue</span>
+            </div>
           </div>
           <div className="p-1.5 sm:p-2 rounded-lg bg-primary/10">
             <div className="flex items-center gap-1">
               <BarChart3 className="w-3 h-3 text-primary" />
               <span className="text-[9px] text-primary font-medium">Revenue</span>
             </div>
-            <div className="text-xs sm:text-sm font-bold text-foreground">$1,284</div>
+            <div className="flex items-baseline gap-1">
+              <span className="text-xs sm:text-sm font-bold text-foreground">$1,284</span>
+              <span className="text-[7px] sm:text-[8px] text-muted-foreground">Today</span>
+            </div>
           </div>
         </div>
       </div>
