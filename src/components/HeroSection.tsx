@@ -582,13 +582,25 @@ const HeroSection = () => {
   };
 
   const renderTabletView = () => {
-    switch (activeView) {
-      case "cashier": return <CashierView />;
-      case "kitchen": return <KitchenView />;
-      case "summary": return <SummaryView />;
-      case "admin": return <AdminView />;
-      default: return <QROrderView />;
-    }
+    const ViewContent = () => {
+      switch (activeView) {
+        case "cashier": return <CashierView />;
+        case "kitchen": return <KitchenView />;
+        case "summary": return <SummaryView />;
+        case "admin": return <AdminView />;
+        default: return <QROrderView />;
+      }
+    };
+
+    return (
+      <div 
+        key={activeView}
+        className="h-full animate-fade-in"
+        style={{ animation: 'tabFadeIn 0.3s ease-out forwards' }}
+      >
+        <ViewContent />
+      </div>
+    );
   };
 
   return (
@@ -666,7 +678,12 @@ const HeroSection = () => {
             <div className="relative w-28 sm:w-32 lg:w-36 h-56 sm:h-64 lg:h-72 bg-foreground rounded-3xl p-2 shadow-2xl hidden sm:block">
               <div className="absolute top-3 left-1/2 -translate-x-1/2 w-12 h-1.5 bg-muted-foreground/30 rounded-full" />
               <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
-                <PhoneView />
+                <div 
+                  key={activeView}
+                  style={{ animation: 'tabFadeIn 0.3s ease-out forwards' }}
+                >
+                  <PhoneView />
+                </div>
               </div>
             </div>
           </div>
