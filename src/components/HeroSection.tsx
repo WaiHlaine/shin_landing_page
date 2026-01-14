@@ -667,7 +667,7 @@ const HeroSection = () => {
           {/* Device Mockups */}
           <div className="flex items-end justify-center gap-4 lg:gap-8 mb-10 animate-fade-up" style={{ animationDelay: "0.25s" }}>
             {/* Tablet Mockup */}
-            <div className={`relative ${activeView === "summary" ? "w-80" : "w-72"} sm:w-96 lg:w-[28rem] h-64 sm:h-72 lg:h-80 bg-foreground rounded-3xl p-3 shadow-2xl transition-all duration-300`}>
+            <div className="relative w-80 sm:w-96 lg:w-[28rem] h-64 sm:h-72 lg:h-80 bg-foreground rounded-3xl p-3 shadow-2xl transition-all duration-300">
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-20 h-2 bg-muted-foreground/30 rounded-full" />
               <div className="w-full h-full bg-background rounded-2xl overflow-hidden">
                 {renderTabletView()}
