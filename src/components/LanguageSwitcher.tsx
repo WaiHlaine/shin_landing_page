@@ -13,8 +13,8 @@ import { Language } from "@/i18n/translations";
 const FlagIcon = ({ code }: { code: Language }) => {
   const flags: Record<Language, JSX.Element> = {
     en: (
-      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0">
-        <svg className="w-full h-full" viewBox="0 0 40 40">
+      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-border/30">
+        <svg className="w-full h-full scale-110" viewBox="0 0 40 40" preserveAspectRatio="xMidYMid slice">
           <rect width="40" height="40" fill="#012169"/>
           <path d="M0,0 L40,40 M40,0 L0,40" stroke="#fff" strokeWidth="8"/>
           <path d="M0,0 L40,40" stroke="#C8102E" strokeWidth="4"/>
@@ -25,16 +25,16 @@ const FlagIcon = ({ code }: { code: Language }) => {
       </div>
     ),
     ja: (
-      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0">
-        <svg className="w-full h-full" viewBox="0 0 40 40">
+      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-border/30">
+        <svg className="w-full h-full scale-110" viewBox="0 0 40 40" preserveAspectRatio="xMidYMid slice">
           <rect width="40" height="40" fill="#fff"/>
           <circle cx="20" cy="20" r="10" fill="#BC002D"/>
         </svg>
       </div>
     ),
     my: (
-      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0">
-        <svg className="w-full h-full" viewBox="0 0 40 40">
+      <div className="w-5 h-5 rounded-full overflow-hidden flex-shrink-0 border border-border/30">
+        <svg className="w-full h-full scale-110" viewBox="0 0 40 40" preserveAspectRatio="xMidYMid slice">
           <rect width="40" height="13.33" fill="#FECB00"/>
           <rect y="13.33" width="40" height="13.34" fill="#34B233"/>
           <rect y="26.67" width="40" height="13.33" fill="#EA2839"/>
