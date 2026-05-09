@@ -32,22 +32,30 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("http://localhost:8080/api/demo-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    toast({
-      title: t.contact.toast.title,
-      description: t.contact.toast.description,
-    });
+      if (!response.ok) throw new Error("Server error");
 
-    setFormData({
-      name: "",
-      email: "",
-      phone: "",
-      shopName: "",
-      message: "",
-    });
-    setIsSubmitting(false);
+      toast({
+        title: t.contact.toast.title,
+        description: t.contact.toast.description,
+      });
+
+      setFormData({ name: "", email: "", phone: "", shopName: "", message: "" });
+    } catch {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [

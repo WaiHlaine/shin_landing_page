@@ -39,17 +39,31 @@ const DemoRequestModal = ({ open, onOpenChange }: DemoRequestModalProps) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    try {
+      const response = await fetch("http://localhost:8080/api/demo-request", {
+        method: "POST",
+        headers: { "Content-Type": "application/json", Accept: "application/json" },
+        body: JSON.stringify(formData),
+      });
 
-    toast({
-      title: t.demoModal.successTitle,
-      description: t.demoModal.successMessage,
-    });
+      if (!response.ok) throw new Error("Server error");
 
-    setFormData({ shopName: "", email: "", currency: "", menuLanguage: "" });
-    setIsSubmitting(false);
-    onOpenChange(false);
+      toast({
+        title: t.demoModal.successTitle,
+        description: t.demoModal.successMessage,
+      });
+
+      setFormData({ shopName: "", email: "", currency: "", menuLanguage: "" });
+      onOpenChange(false);
+    } catch {
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

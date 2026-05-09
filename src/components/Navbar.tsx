@@ -68,8 +68,10 @@ const Navbar = () => {
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-3">
             <LanguageSwitcher />
-            <Button variant="ghost" size="sm">
-              {t.nav.signIn}
+            <Button variant="ghost" size="sm" asChild>
+              <a href="http://localhost:8080/login" target="_blank" rel="noopener noreferrer">
+                {t.nav.signIn}
+              </a>
             </Button>
             <Button variant="default" size="sm">
               {t.nav.getDemo}
@@ -108,8 +110,10 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="flex flex-col gap-2 mt-4 px-4">
-                <Button variant="outline" className="w-full">
-                  {t.nav.signIn}
+                <Button variant="outline" className="w-full" asChild>
+                  <a href="http://localhost:8080/login" target="_blank" rel="noopener noreferrer">
+                    {t.nav.signIn}
+                  </a>
                 </Button>
                 <Button variant="default" className="w-full">
                   {t.nav.getDemo}
