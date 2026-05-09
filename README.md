@@ -1,4 +1,14 @@
-# Welcome to your Lovable project
+# shin_landing_page
+
+> **Note:** Landing page ကို ပြင်ပြီးတိုင်း အောက်ပါ command များ run ပြီး `shin_app/public/home/` ထဲ copy ချရမည်။
+>
+> ```bash
+> # shin_landing_page folder ထဲမှာ run ပါ
+> npm run build
+> cp -r dist/. ../shin_app/public/home/
+> ```
+>
+> ထို့နောက် `shin_app` ကို restart မလုပ်ဘဲ `http://localhost:8080/home` မှာ ချက်ချင်း အသစ် ပေါ်မည်။
 
 ## Project info
 
