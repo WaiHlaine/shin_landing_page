@@ -40,7 +40,7 @@ const DemoRequestModal = ({ open, onOpenChange }: DemoRequestModalProps) => {
     setIsSubmitting(true);
 
     try {
-      const response = await fetch("http://localhost:8080/api/demo-request", {
+      const response = await fetch("/api/demo-request", {
         method: "POST",
         headers: { "Content-Type": "application/json", Accept: "application/json" },
         body: JSON.stringify(formData),
